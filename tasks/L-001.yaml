@@ -1,0 +1,14 @@
+id: L-001
+domain: ledger
+lang: zh
+difficulty: medium
+instruction: "帮我算一下账户ACC001在2026年10月的餐饮类总支出,精确到分,只要告诉我总数。"
+tools: [get_transactions, calculate, search_products]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+  final_answer:
+    must_include: ["241.65"]

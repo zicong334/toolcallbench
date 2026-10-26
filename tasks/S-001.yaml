@@ -1,0 +1,15 @@
+id: S-001
+domain: schedule
+lang: zh
+difficulty: medium
+instruction: "我想在2026-10-29上午10:00安排一个60分钟的项目例会。先查当天日程:如果这个时段已有安排,就不要创建,直接告诉我冲突事件的编号;如果不冲突,就帮我创建。"
+tools: [list_events, create_event, cancel_event]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-29"}
+  final_answer:
+    must_include: ["E103"]
+    must_not_include: ["没有冲突", "已为你创建", "已创建"]

@@ -1,0 +1,27 @@
+id: T-001
+domain: travel
+lang: zh
+difficulty: hard
+instruction: "帮我订2026-10-29武汉飞北京最便宜的还有票的航班(1人),再订北京最便宜的还有房的酒店,2026-10-29入住2晚1间。最后告诉我机票和酒店的总花费。"
+tools: [search_flights, book_flight, search_hotels, book_room, calculate]
+max_turns: 10
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "北京"}
+        date: {equals: "2026-10-29"}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0007"]}
+    - tool: search_hotels
+      args:
+        city: {equals: "北京"}
+    - tool: book_room
+      args:
+        hotel_id: {in_set: ["HT018"]}
+        checkin: {equals: "2026-10-29"}
+        nights: {equals: 2}
+  final_answer:
+    must_include: ["928"]

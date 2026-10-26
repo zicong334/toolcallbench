@@ -1,0 +1,2375 @@
+{
+ "seed": 20261026,
+ "today": "2026-10-27",
+ "dates": [
+  "2026-10-27",
+  "2026-10-28",
+  "2026-10-29",
+  "2026-10-30",
+  "2026-10-31",
+  "2026-11-01",
+  "2026-11-02"
+ ],
+ "cities_zh": [
+  "武汉",
+  "宜昌",
+  "襄阳",
+  "荆州",
+  "黄冈",
+  "十堰"
+ ],
+ "cities_en": [
+  "Boston",
+  "Austin",
+  "Seattle",
+  "Denver",
+  "Chicago",
+  "Phoenix"
+ ],
+ "weather": {
+  "武汉|2026-10-27": {
+   "city": "武汉",
+   "date": "2026-10-27",
+   "temp_high_c": 9,
+   "temp_low_c": 4,
+   "condition": "雷阵雨",
+   "wind_level": 7,
+   "precip_mm": 12.2,
+   "humidity_pct": 69
+  },
+  "武汉|2026-10-28": {
+   "city": "武汉",
+   "date": "2026-10-28",
+   "temp_high_c": 9,
+   "temp_low_c": 2,
+   "condition": "晴",
+   "wind_level": 5,
+   "precip_mm": 0.0,
+   "humidity_pct": 57
+  },
+  "武汉|2026-10-29": {
+   "city": "武汉",
+   "date": "2026-10-29",
+   "temp_high_c": 11,
+   "temp_low_c": 6,
+   "condition": "阴",
+   "wind_level": 6,
+   "precip_mm": 0.0,
+   "humidity_pct": 73
+  },
+  "武汉|2026-10-30": {
+   "city": "武汉",
+   "date": "2026-10-30",
+   "temp_high_c": 12,
+   "temp_low_c": 6,
+   "condition": "小雨",
+   "wind_level": 6,
+   "precip_mm": 22.1,
+   "humidity_pct": 95
+  },
+  "武汉|2026-10-31": {
+   "city": "武汉",
+   "date": "2026-10-31",
+   "temp_high_c": 11,
+   "temp_low_c": 6,
+   "condition": "晴",
+   "wind_level": 3,
+   "precip_mm": 0.0,
+   "humidity_pct": 66
+  },
+  "武汉|2026-11-01": {
+   "city": "武汉",
+   "date": "2026-11-01",
+   "temp_high_c": 11,
+   "temp_low_c": 6,
+   "condition": "小雨",
+   "wind_level": 7,
+   "precip_mm": 9.7,
+   "humidity_pct": 92
+  },
+  "武汉|2026-11-02": {
+   "city": "武汉",
+   "date": "2026-11-02",
+   "temp_high_c": 10,
+   "temp_low_c": 2,
+   "condition": "多云",
+   "wind_level": 4,
+   "precip_mm": 0.0,
+   "humidity_pct": 62
+  },
+  "宜昌|2026-10-27": {
+   "city": "宜昌",
+   "date": "2026-10-27",
+   "temp_high_c": 17,
+   "temp_low_c": 11,
+   "condition": "晴",
+   "wind_level": 7,
+   "precip_mm": 0.0,
+   "humidity_pct": 90
+  },
+  "宜昌|2026-10-28": {
+   "city": "宜昌",
+   "date": "2026-10-28",
+   "temp_high_c": 20,
+   "temp_low_c": 13,
+   "condition": "多云",
+   "wind_level": 3,
+   "precip_mm": 0.0,
+   "humidity_pct": 54
+  },
+  "宜昌|2026-10-29": {
+   "city": "宜昌",
+   "date": "2026-10-29",
+   "temp_high_c": 20,
+   "temp_low_c": 13,
+   "condition": "阴",
+   "wind_level": 3,
+   "precip_mm": 0.0,
+   "humidity_pct": 47
+  },
+  "宜昌|2026-10-30": {
+   "city": "宜昌",
+   "date": "2026-10-30",
+   "temp_high_c": 15,
+   "temp_low_c": 7,
+   "condition": "多云",
+   "wind_level": 2,
+   "precip_mm": 0.0,
+   "humidity_pct": 71
+  },
+  "宜昌|2026-10-31": {
+   "city": "宜昌",
+   "date": "2026-10-31",
+   "temp_high_c": 15,
+   "temp_low_c": 8,
+   "condition": "多云",
+   "wind_level": 6,
+   "precip_mm": 0.0,
+   "humidity_pct": 50
+  },
+  "宜昌|2026-11-01": {
+   "city": "宜昌",
+   "date": "2026-11-01",
+   "temp_high_c": 15,
+   "temp_low_c": 6,
+   "condition": "小雨",
+   "wind_level": 4,
+   "precip_mm": 2.8,
+   "humidity_pct": 54
+  },
+  "宜昌|2026-11-02": {
+   "city": "宜昌",
+   "date": "2026-11-02",
+   "temp_high_c": 21,
+   "temp_low_c": 12,
+   "condition": "晴",
+   "wind_level": 5,
+   "precip_mm": 0.0,
+   "humidity_pct": 88
+  },
+  "襄阳|2026-10-27": {
+   "city": "襄阳",
+   "date": "2026-10-27",
+   "temp_high_c": 11,
+   "temp_low_c": 2,
+   "condition": "小雨",
+   "wind_level": 2,
+   "precip_mm": 9.8,
+   "humidity_pct": 38
+  },
+  "襄阳|2026-10-28": {
+   "city": "襄阳",
+   "date": "2026-10-28",
+   "temp_high_c": 16,
+   "temp_low_c": 10,
+   "condition": "雷阵雨",
+   "wind_level": 7,
+   "precip_mm": 15.1,
+   "humidity_pct": 41
+  },
+  "襄阳|2026-10-29": {
+   "city": "襄阳",
+   "date": "2026-10-29",
+   "temp_high_c": 15,
+   "temp_low_c": 11,
+   "condition": "雷阵雨",
+   "wind_level": 5,
+   "precip_mm": 17.7,
+   "humidity_pct": 51
+  },
+  "襄阳|2026-10-30": {
+   "city": "襄阳",
+   "date": "2026-10-30",
+   "temp_high_c": 16,
+   "temp_low_c": 7,
+   "condition": "雷阵雨",
+   "wind_level": 4,
+   "precip_mm": 16.2,
+   "humidity_pct": 40
+  },
+  "襄阳|2026-10-31": {
+   "city": "襄阳",
+   "date": "2026-10-31",
+   "temp_high_c": 16,
+   "temp_low_c": 10,
+   "condition": "晴",
+   "wind_level": 1,
+   "precip_mm": 0.0,
+   "humidity_pct": 54
+  },
+  "襄阳|2026-11-01": {
+   "city": "襄阳",
+   "date": "2026-11-01",
+   "temp_high_c": 20,
+   "temp_low_c": 16,
+   "condition": "阴",
+   "wind_level": 5,
+   "precip_mm": 0.0,
+   "humidity_pct": 52
+  },
+  "襄阳|2026-11-02": {
+   "city": "襄阳",
+   "date": "2026-11-02",
+   "temp_high_c": 10,
+   "temp_low_c": 2,
+   "condition": "晴",
+   "wind_level": 7,
+   "precip_mm": 0.0,
+   "humidity_pct": 38
+  },
+  "荆州|2026-10-27": {
+   "city": "荆州",
+   "date": "2026-10-27",
+   "temp_high_c": 11,
+   "temp_low_c": 6,
+   "condition": "雷阵雨",
+   "wind_level": 4,
+   "precip_mm": 8.8,
+   "humidity_pct": 66
+  },
+  "荆州|2026-10-28": {
+   "city": "荆州",
+   "date": "2026-10-28",
+   "temp_high_c": 8,
+   "temp_low_c": 4,
+   "condition": "多云",
+   "wind_level": 4,
+   "precip_mm": 0.0,
+   "humidity_pct": 53
+  },
+  "荆州|2026-10-29": {
+   "city": "荆州",
+   "date": "2026-10-29",
+   "temp_high_c": 14,
+   "temp_low_c": 5,
+   "condition": "阴",
+   "wind_level": 4,
+   "precip_mm": 0.0,
+   "humidity_pct": 87
+  },
+  "荆州|2026-10-30": {
+   "city": "荆州",
+   "date": "2026-10-30",
+   "temp_high_c": 14,
+   "temp_low_c": 8,
+   "condition": "多云",
+   "wind_level": 6,
+   "precip_mm": 0.0,
+   "humidity_pct": 54
+  },
+  "荆州|2026-10-31": {
+   "city": "荆州",
+   "date": "2026-10-31",
+   "temp_high_c": 12,
+   "temp_low_c": 5,
+   "condition": "小雨",
+   "wind_level": 4,
+   "precip_mm": 23.9,
+   "humidity_pct": 63
+  },
+  "荆州|2026-11-01": {
+   "city": "荆州",
+   "date": "2026-11-01",
+   "temp_high_c": 9,
+   "temp_low_c": 3,
+   "condition": "多云",
+   "wind_level": 3,
+   "precip_mm": 0.0,
+   "humidity_pct": 39
+  },
+  "荆州|2026-11-02": {
+   "city": "荆州",
+   "date": "2026-11-02",
+   "temp_high_c": 6,
+   "temp_low_c": 0,
+   "condition": "小雨",
+   "wind_level": 6,
+   "precip_mm": 20.9,
+   "humidity_pct": 47
+  },
+  "黄冈|2026-10-27": {
+   "city": "黄冈",
+   "date": "2026-10-27",
+   "temp_high_c": 16,
+   "temp_low_c": 8,
+   "condition": "雷阵雨",
+   "wind_level": 3,
+   "precip_mm": 12.9,
+   "humidity_pct": 54
+  },
+  "黄冈|2026-10-28": {
+   "city": "黄冈",
+   "date": "2026-10-28",
+   "temp_high_c": 16,
+   "temp_low_c": 7,
+   "condition": "阴",
+   "wind_level": 3,
+   "precip_mm": 0.0,
+   "humidity_pct": 80
+  },
+  "黄冈|2026-10-29": {
+   "city": "黄冈",
+   "date": "2026-10-29",
+   "temp_high_c": 18,
+   "temp_low_c": 11,
+   "condition": "中雨",
+   "wind_level": 4,
+   "precip_mm": 4.9,
+   "humidity_pct": 68
+  },
+  "黄冈|2026-10-30": {
+   "city": "黄冈",
+   "date": "2026-10-30",
+   "temp_high_c": 19,
+   "temp_low_c": 10,
+   "condition": "小雨",
+   "wind_level": 6,
+   "precip_mm": 8.0,
+   "humidity_pct": 82
+  },
+  "黄冈|2026-10-31": {
+   "city": "黄冈",
+   "date": "2026-10-31",
+   "temp_high_c": 14,
+   "temp_low_c": 6,
+   "condition": "雷阵雨",
+   "wind_level": 3,
+   "precip_mm": 11.4,
+   "humidity_pct": 40
+  },
+  "黄冈|2026-11-01": {
+   "city": "黄冈",
+   "date": "2026-11-01",
+   "temp_high_c": 17,
+   "temp_low_c": 9,
+   "condition": "小雨",
+   "wind_level": 3,
+   "precip_mm": 13.4,
+   "humidity_pct": 61
+  },
+  "黄冈|2026-11-02": {
+   "city": "黄冈",
+   "date": "2026-11-02",
+   "temp_high_c": 14,
+   "temp_low_c": 8,
+   "condition": "小雨",
+   "wind_level": 7,
+   "precip_mm": 15.5,
+   "humidity_pct": 58
+  },
+  "十堰|2026-10-27": {
+   "city": "十堰",
+   "date": "2026-10-27",
+   "temp_high_c": 15,
+   "temp_low_c": 10,
+   "condition": "多云",
+   "wind_level": 2,
+   "precip_mm": 0.0,
+   "humidity_pct": 52
+  },
+  "十堰|2026-10-28": {
+   "city": "十堰",
+   "date": "2026-10-28",
+   "temp_high_c": 16,
+   "temp_low_c": 7,
+   "condition": "多云",
+   "wind_level": 2,
+   "precip_mm": 0.0,
+   "humidity_pct": 83
+  },
+  "十堰|2026-10-29": {
+   "city": "十堰",
+   "date": "2026-10-29",
+   "temp_high_c": 14,
+   "temp_low_c": 6,
+   "condition": "小雨",
+   "wind_level": 4,
+   "precip_mm": 18.1,
+   "humidity_pct": 92
+  },
+  "十堰|2026-10-30": {
+   "city": "十堰",
+   "date": "2026-10-30",
+   "temp_high_c": 15,
+   "temp_low_c": 11,
+   "condition": "小雨",
+   "wind_level": 5,
+   "precip_mm": 13.4,
+   "humidity_pct": 78
+  },
+  "十堰|2026-10-31": {
+   "city": "十堰",
+   "date": "2026-10-31",
+   "temp_high_c": 10,
+   "temp_low_c": 2,
+   "condition": "中雨",
+   "wind_level": 7,
+   "precip_mm": 14.7,
+   "humidity_pct": 54
+  },
+  "十堰|2026-11-01": {
+   "city": "十堰",
+   "date": "2026-11-01",
+   "temp_high_c": 12,
+   "temp_low_c": 3,
+   "condition": "小雨",
+   "wind_level": 7,
+   "precip_mm": 11.3,
+   "humidity_pct": 87
+  },
+  "十堰|2026-11-02": {
+   "city": "十堰",
+   "date": "2026-11-02",
+   "temp_high_c": 11,
+   "temp_low_c": 4,
+   "condition": "多云",
+   "wind_level": 5,
+   "precip_mm": 0.0,
+   "humidity_pct": 85
+  },
+  "Boston|2026-10-27": {
+   "city": "Boston",
+   "date": "2026-10-27",
+   "temp_high_c": 4,
+   "temp_low_c": -1,
+   "condition": "sunny",
+   "wind_level": 4,
+   "precip_mm": 0.0,
+   "humidity_pct": 85
+  },
+  "Boston|2026-10-28": {
+   "city": "Boston",
+   "date": "2026-10-28",
+   "temp_high_c": 8,
+   "temp_low_c": -1,
+   "condition": "overcast",
+   "wind_level": 1,
+   "precip_mm": 0.0,
+   "humidity_pct": 84
+  },
+  "Boston|2026-10-29": {
+   "city": "Boston",
+   "date": "2026-10-29",
+   "temp_high_c": 6,
+   "temp_low_c": -2,
+   "condition": "overcast",
+   "wind_level": 3,
+   "precip_mm": 0.0,
+   "humidity_pct": 43
+  },
+  "Boston|2026-10-30": {
+   "city": "Boston",
+   "date": "2026-10-30",
+   "temp_high_c": 5,
+   "temp_low_c": -3,
+   "condition": "thunderstorm",
+   "wind_level": 1,
+   "precip_mm": 20.3,
+   "humidity_pct": 71
+  },
+  "Boston|2026-10-31": {
+   "city": "Boston",
+   "date": "2026-10-31",
+   "temp_high_c": 6,
+   "temp_low_c": 1,
+   "condition": "moderate rain",
+   "wind_level": 1,
+   "precip_mm": 1.6,
+   "humidity_pct": 84
+  },
+  "Boston|2026-11-01": {
+   "city": "Boston",
+   "date": "2026-11-01",
+   "temp_high_c": 12,
+   "temp_low_c": 8,
+   "condition": "cloudy",
+   "wind_level": 7,
+   "precip_mm": 0.0,
+   "humidity_pct": 93
+  },
+  "Boston|2026-11-02": {
+   "city": "Boston",
+   "date": "2026-11-02",
+   "temp_high_c": 4,
+   "temp_low_c": -3,
+   "condition": "light rain",
+   "wind_level": 3,
+   "precip_mm": 12.1,
+   "humidity_pct": 59
+  },
+  "Austin|2026-10-27": {
+   "city": "Austin",
+   "date": "2026-10-27",
+   "temp_high_c": 10,
+   "temp_low_c": 5,
+   "condition": "light rain",
+   "wind_level": 4,
+   "precip_mm": 17.9,
+   "humidity_pct": 59
+  },
+  "Austin|2026-10-28": {
+   "city": "Austin",
+   "date": "2026-10-28",
+   "temp_high_c": 13,
+   "temp_low_c": 6,
+   "condition": "thunderstorm",
+   "wind_level": 1,
+   "precip_mm": 14.4,
+   "humidity_pct": 46
+  },
+  "Austin|2026-10-29": {
+   "city": "Austin",
+   "date": "2026-10-29",
+   "temp_high_c": 5,
+   "temp_low_c": -4,
+   "condition": "cloudy",
+   "wind_level": 1,
+   "precip_mm": 0.0,
+   "humidity_pct": 80
+  },
+  "Austin|2026-10-30": {
+   "city": "Austin",
+   "date": "2026-10-30",
+   "temp_high_c": 7,
+   "temp_low_c": -2,
+   "condition": "moderate rain",
+   "wind_level": 1,
+   "precip_mm": 8.1,
+   "humidity_pct": 88
+  },
+  "Austin|2026-10-31": {
+   "city": "Austin",
+   "date": "2026-10-31",
+   "temp_high_c": 5,
+   "temp_low_c": -3,
+   "condition": "cloudy",
+   "wind_level": 7,
+   "precip_mm": 0.0,
+   "humidity_pct": 92
+  },
+  "Austin|2026-11-01": {
+   "city": "Austin",
+   "date": "2026-11-01",
+   "temp_high_c": 13,
+   "temp_low_c": 6,
+   "condition": "cloudy",
+   "wind_level": 5,
+   "precip_mm": 0.0,
+   "humidity_pct": 36
+  },
+  "Austin|2026-11-02": {
+   "city": "Austin",
+   "date": "2026-11-02",
+   "temp_high_c": 7,
+   "temp_low_c": -2,
+   "condition": "thunderstorm",
+   "wind_level": 3,
+   "precip_mm": 13.5,
+   "humidity_pct": 68
+  },
+  "Seattle|2026-10-27": {
+   "city": "Seattle",
+   "date": "2026-10-27",
+   "temp_high_c": 19,
+   "temp_low_c": 10,
+   "condition": "light rain",
+   "wind_level": 5,
+   "precip_mm": 20.2,
+   "humidity_pct": 50
+  },
+  "Seattle|2026-10-28": {
+   "city": "Seattle",
+   "date": "2026-10-28",
+   "temp_high_c": 27,
+   "temp_low_c": 23,
+   "condition": "overcast",
+   "wind_level": 2,
+   "precip_mm": 0.0,
+   "humidity_pct": 79
+  },
+  "Seattle|2026-10-29": {
+   "city": "Seattle",
+   "date": "2026-10-29",
+   "temp_high_c": 24,
+   "temp_low_c": 18,
+   "condition": "moderate rain",
+   "wind_level": 6,
+   "precip_mm": 11.9,
+   "humidity_pct": 89
+  },
+  "Seattle|2026-10-30": {
+   "city": "Seattle",
+   "date": "2026-10-30",
+   "temp_high_c": 22,
+   "temp_low_c": 13,
+   "condition": "light rain",
+   "wind_level": 5,
+   "precip_mm": 12.0,
+   "humidity_pct": 47
+  },
+  "Seattle|2026-10-31": {
+   "city": "Seattle",
+   "date": "2026-10-31",
+   "temp_high_c": 20,
+   "temp_low_c": 16,
+   "condition": "moderate rain",
+   "wind_level": 2,
+   "precip_mm": 11.1,
+   "humidity_pct": 78
+  },
+  "Seattle|2026-11-01": {
+   "city": "Seattle",
+   "date": "2026-11-01",
+   "temp_high_c": 23,
+   "temp_low_c": 18,
+   "condition": "moderate rain",
+   "wind_level": 3,
+   "precip_mm": 2.2,
+   "humidity_pct": 78
+  },
+  "Seattle|2026-11-02": {
+   "city": "Seattle",
+   "date": "2026-11-02",
+   "temp_high_c": 24,
+   "temp_low_c": 18,
+   "condition": "moderate rain",
+   "wind_level": 3,
+   "precip_mm": 5.3,
+   "humidity_pct": 68
+  },
+  "Denver|2026-10-27": {
+   "city": "Denver",
+   "date": "2026-10-27",
+   "temp_high_c": 19,
+   "temp_low_c": 10,
+   "condition": "cloudy",
+   "wind_level": 1,
+   "precip_mm": 0.0,
+   "humidity_pct": 37
+  },
+  "Denver|2026-10-28": {
+   "city": "Denver",
+   "date": "2026-10-28",
+   "temp_high_c": 18,
+   "temp_low_c": 14,
+   "condition": "light rain",
+   "wind_level": 2,
+   "precip_mm": 15.6,
+   "humidity_pct": 65
+  },
+  "Denver|2026-10-29": {
+   "city": "Denver",
+   "date": "2026-10-29",
+   "temp_high_c": 17,
+   "temp_low_c": 8,
+   "condition": "cloudy",
+   "wind_level": 5,
+   "precip_mm": 0.0,
+   "humidity_pct": 95
+  },
+  "Denver|2026-10-30": {
+   "city": "Denver",
+   "date": "2026-10-30",
+   "temp_high_c": 20,
+   "temp_low_c": 15,
+   "condition": "cloudy",
+   "wind_level": 5,
+   "precip_mm": 0.0,
+   "humidity_pct": 70
+  },
+  "Denver|2026-10-31": {
+   "city": "Denver",
+   "date": "2026-10-31",
+   "temp_high_c": 14,
+   "temp_low_c": 7,
+   "condition": "light rain",
+   "wind_level": 7,
+   "precip_mm": 20.9,
+   "humidity_pct": 94
+  },
+  "Denver|2026-11-01": {
+   "city": "Denver",
+   "date": "2026-11-01",
+   "temp_high_c": 21,
+   "temp_low_c": 14,
+   "condition": "sunny",
+   "wind_level": 1,
+   "precip_mm": 0.0,
+   "humidity_pct": 91
+  },
+  "Denver|2026-11-02": {
+   "city": "Denver",
+   "date": "2026-11-02",
+   "temp_high_c": 16,
+   "temp_low_c": 9,
+   "condition": "light rain",
+   "wind_level": 1,
+   "precip_mm": 23.6,
+   "humidity_pct": 57
+  },
+  "Chicago|2026-10-27": {
+   "city": "Chicago",
+   "date": "2026-10-27",
+   "temp_high_c": 19,
+   "temp_low_c": 13,
+   "condition": "light rain",
+   "wind_level": 7,
+   "precip_mm": 24.4,
+   "humidity_pct": 94
+  },
+  "Chicago|2026-10-28": {
+   "city": "Chicago",
+   "date": "2026-10-28",
+   "temp_high_c": 19,
+   "temp_low_c": 15,
+   "condition": "sunny",
+   "wind_level": 4,
+   "precip_mm": 0.0,
+   "humidity_pct": 58
+  },
+  "Chicago|2026-10-29": {
+   "city": "Chicago",
+   "date": "2026-10-29",
+   "temp_high_c": 19,
+   "temp_low_c": 10,
+   "condition": "overcast",
+   "wind_level": 5,
+   "precip_mm": 0.0,
+   "humidity_pct": 50
+  },
+  "Chicago|2026-10-30": {
+   "city": "Chicago",
+   "date": "2026-10-30",
+   "temp_high_c": 19,
+   "temp_low_c": 12,
+   "condition": "light rain",
+   "wind_level": 6,
+   "precip_mm": 24.9,
+   "humidity_pct": 94
+  },
+  "Chicago|2026-10-31": {
+   "city": "Chicago",
+   "date": "2026-10-31",
+   "temp_high_c": 24,
+   "temp_low_c": 16,
+   "condition": "cloudy",
+   "wind_level": 3,
+   "precip_mm": 0.0,
+   "humidity_pct": 70
+  },
+  "Chicago|2026-11-01": {
+   "city": "Chicago",
+   "date": "2026-11-01",
+   "temp_high_c": 20,
+   "temp_low_c": 11,
+   "condition": "moderate rain",
+   "wind_level": 3,
+   "precip_mm": 7.9,
+   "humidity_pct": 56
+  },
+  "Chicago|2026-11-02": {
+   "city": "Chicago",
+   "date": "2026-11-02",
+   "temp_high_c": 17,
+   "temp_low_c": 10,
+   "condition": "overcast",
+   "wind_level": 5,
+   "precip_mm": 0.0,
+   "humidity_pct": 45
+  },
+  "Phoenix|2026-10-27": {
+   "city": "Phoenix",
+   "date": "2026-10-27",
+   "temp_high_c": 30,
+   "temp_low_c": 21,
+   "condition": "moderate rain",
+   "wind_level": 7,
+   "precip_mm": 15.0,
+   "humidity_pct": 72
+  },
+  "Phoenix|2026-10-28": {
+   "city": "Phoenix",
+   "date": "2026-10-28",
+   "temp_high_c": 26,
+   "temp_low_c": 19,
+   "condition": "moderate rain",
+   "wind_level": 2,
+   "precip_mm": 6.9,
+   "humidity_pct": 93
+  },
+  "Phoenix|2026-10-29": {
+   "city": "Phoenix",
+   "date": "2026-10-29",
+   "temp_high_c": 26,
+   "temp_low_c": 18,
+   "condition": "overcast",
+   "wind_level": 1,
+   "precip_mm": 0.0,
+   "humidity_pct": 38
+  },
+  "Phoenix|2026-10-30": {
+   "city": "Phoenix",
+   "date": "2026-10-30",
+   "temp_high_c": 27,
+   "temp_low_c": 23,
+   "condition": "overcast",
+   "wind_level": 6,
+   "precip_mm": 0.0,
+   "humidity_pct": 46
+  },
+  "Phoenix|2026-10-31": {
+   "city": "Phoenix",
+   "date": "2026-10-31",
+   "temp_high_c": 29,
+   "temp_low_c": 23,
+   "condition": "cloudy",
+   "wind_level": 1,
+   "precip_mm": 0.0,
+   "humidity_pct": 88
+  },
+  "Phoenix|2026-11-01": {
+   "city": "Phoenix",
+   "date": "2026-11-01",
+   "temp_high_c": 25,
+   "temp_low_c": 19,
+   "condition": "light rain",
+   "wind_level": 1,
+   "precip_mm": 21.5,
+   "humidity_pct": 77
+  },
+  "Phoenix|2026-11-02": {
+   "city": "Phoenix",
+   "date": "2026-11-02",
+   "temp_high_c": 25,
+   "temp_low_c": 16,
+   "condition": "moderate rain",
+   "wind_level": 6,
+   "precip_mm": 14.1,
+   "humidity_pct": 46
+  }
+ },
+ "events": [
+  {
+   "event_id": "E101",
+   "title_zh": "组会",
+   "title_en": "group meeting",
+   "date": "2026-10-27",
+   "start_time": "10:00",
+   "duration_min": 60,
+   "status": "active"
+  },
+  {
+   "event_id": "E102",
+   "title_zh": "导师面谈",
+   "title_en": "advisor meeting",
+   "date": "2026-10-28",
+   "start_time": "14:30",
+   "duration_min": 45,
+   "status": "active"
+  },
+  {
+   "event_id": "E103",
+   "title_zh": "论文讨论",
+   "title_en": "paper discussion",
+   "date": "2026-10-29",
+   "start_time": "09:00",
+   "duration_min": 90,
+   "status": "active"
+  },
+  {
+   "event_id": "E104",
+   "title_zh": "体检",
+   "title_en": "physical exam",
+   "date": "2026-10-30",
+   "start_time": "08:00",
+   "duration_min": 120,
+   "status": "active"
+  },
+  {
+   "event_id": "E105",
+   "title_zh": "项目评审",
+   "title_en": "project review",
+   "date": "2026-10-31",
+   "start_time": "15:00",
+   "duration_min": 60,
+   "status": "active"
+  },
+  {
+   "event_id": "E106",
+   "title_zh": "家庭晚餐",
+   "title_en": "family dinner",
+   "date": "2026-11-01",
+   "start_time": "18:00",
+   "duration_min": 90,
+   "status": "active"
+  }
+ ],
+ "next_event_num": 901,
+ "flights": [
+  {
+   "flight_id": "FL0001",
+   "flight_no": "MU9102",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-27",
+   "dep_time": "20:30",
+   "price_cny": 610,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0002",
+   "flight_no": "HU4662",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-27",
+   "dep_time": "14:30",
+   "price_cny": 780,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0003",
+   "flight_no": "MU8779",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-27",
+   "dep_time": "09:45",
+   "price_cny": 950,
+   "seats_left": 5
+  },
+  {
+   "flight_id": "FL0004",
+   "flight_no": "MU1764",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-28",
+   "dep_time": "08:30",
+   "price_cny": 780,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0005",
+   "flight_no": "HU6400",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-28",
+   "dep_time": "12:15",
+   "price_cny": 520,
+   "seats_left": 30
+  },
+  {
+   "flight_id": "FL0006",
+   "flight_no": "MU7865",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-28",
+   "dep_time": "13:15",
+   "price_cny": 610,
+   "seats_left": 30
+  },
+  {
+   "flight_id": "FL0007",
+   "flight_no": "CZ3175",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-29",
+   "dep_time": "20:45",
+   "price_cny": 450,
+   "seats_left": 5
+  },
+  {
+   "flight_id": "FL0008",
+   "flight_no": "HU1647",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-29",
+   "dep_time": "18:15",
+   "price_cny": 950,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0009",
+   "flight_no": "CZ7724",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-29",
+   "dep_time": "14:00",
+   "price_cny": 520,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0010",
+   "flight_no": "CZ1735",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-30",
+   "dep_time": "13:00",
+   "price_cny": 380,
+   "seats_left": 12
+  },
+  {
+   "flight_id": "FL0011",
+   "flight_no": "3U9934",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-30",
+   "dep_time": "12:45",
+   "price_cny": 610,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0012",
+   "flight_no": "HU5374",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-30",
+   "dep_time": "08:30",
+   "price_cny": 1280,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0013",
+   "flight_no": "CZ4957",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-31",
+   "dep_time": "16:30",
+   "price_cny": 520,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0014",
+   "flight_no": "3U2723",
+   "origin": "武汉",
+   "dest": "北京",
+   "date": "2026-10-31",
+   "dep_time": "12:45",
+   "price_cny": 1280,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0015",
+   "flight_no": "HU6720",
+   "origin": "武汉",
+   "dest": "上海",
+   "date": "2026-10-27",
+   "dep_time": "17:45",
+   "price_cny": 450,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0016",
+   "flight_no": "HU7539",
+   "origin": "武汉",
+   "dest": "上海",
+   "date": "2026-10-27",
+   "dep_time": "13:00",
+   "price_cny": 780,
+   "seats_left": 30
+  },
+  {
+   "flight_id": "FL0017",
+   "flight_no": "HU5543",
+   "origin": "武汉",
+   "dest": "上海",
+   "date": "2026-10-28",
+   "dep_time": "07:15",
+   "price_cny": 610,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0018",
+   "flight_no": "3U8337",
+   "origin": "武汉",
+   "dest": "上海",
+   "date": "2026-10-28",
+   "dep_time": "19:00",
+   "price_cny": 1280,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0019",
+   "flight_no": "MU6454",
+   "origin": "武汉",
+   "dest": "上海",
+   "date": "2026-10-29",
+   "dep_time": "13:00",
+   "price_cny": 520,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0020",
+   "flight_no": "3U6051",
+   "origin": "武汉",
+   "dest": "上海",
+   "date": "2026-10-29",
+   "dep_time": "18:15",
+   "price_cny": 950,
+   "seats_left": 30
+  },
+  {
+   "flight_id": "FL0021",
+   "flight_no": "CZ3675",
+   "origin": "武汉",
+   "dest": "上海",
+   "date": "2026-10-29",
+   "dep_time": "11:00",
+   "price_cny": 1280,
+   "seats_left": 30
+  },
+  {
+   "flight_id": "FL0022",
+   "flight_no": "MU2644",
+   "origin": "武汉",
+   "dest": "上海",
+   "date": "2026-10-30",
+   "dep_time": "14:30",
+   "price_cny": 1280,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0023",
+   "flight_no": "MU6650",
+   "origin": "武汉",
+   "dest": "上海",
+   "date": "2026-10-30",
+   "dep_time": "09:00",
+   "price_cny": 520,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0024",
+   "flight_no": "3U4044",
+   "origin": "武汉",
+   "dest": "上海",
+   "date": "2026-10-30",
+   "dep_time": "16:45",
+   "price_cny": 520,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0025",
+   "flight_no": "HU8455",
+   "origin": "武汉",
+   "dest": "上海",
+   "date": "2026-10-31",
+   "dep_time": "21:45",
+   "price_cny": 950,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0026",
+   "flight_no": "HU9200",
+   "origin": "武汉",
+   "dest": "上海",
+   "date": "2026-10-31",
+   "dep_time": "11:15",
+   "price_cny": 380,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0027",
+   "flight_no": "3U6126",
+   "origin": "武汉",
+   "dest": "深圳",
+   "date": "2026-10-27",
+   "dep_time": "12:15",
+   "price_cny": 380,
+   "seats_left": 12
+  },
+  {
+   "flight_id": "FL0028",
+   "flight_no": "HU4179",
+   "origin": "武汉",
+   "dest": "深圳",
+   "date": "2026-10-27",
+   "dep_time": "13:30",
+   "price_cny": 780,
+   "seats_left": 30
+  },
+  {
+   "flight_id": "FL0029",
+   "flight_no": "CZ1623",
+   "origin": "武汉",
+   "dest": "深圳",
+   "date": "2026-10-27",
+   "dep_time": "14:15",
+   "price_cny": 450,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0030",
+   "flight_no": "3U7351",
+   "origin": "武汉",
+   "dest": "深圳",
+   "date": "2026-10-28",
+   "dep_time": "16:00",
+   "price_cny": 950,
+   "seats_left": 12
+  },
+  {
+   "flight_id": "FL0031",
+   "flight_no": "3U7692",
+   "origin": "武汉",
+   "dest": "深圳",
+   "date": "2026-10-28",
+   "dep_time": "10:45",
+   "price_cny": 950,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0032",
+   "flight_no": "CZ3338",
+   "origin": "武汉",
+   "dest": "深圳",
+   "date": "2026-10-29",
+   "dep_time": "16:00",
+   "price_cny": 610,
+   "seats_left": 12
+  },
+  {
+   "flight_id": "FL0033",
+   "flight_no": "CZ2316",
+   "origin": "武汉",
+   "dest": "深圳",
+   "date": "2026-10-29",
+   "dep_time": "14:00",
+   "price_cny": 950,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0034",
+   "flight_no": "CZ1168",
+   "origin": "武汉",
+   "dest": "深圳",
+   "date": "2026-10-30",
+   "dep_time": "15:15",
+   "price_cny": 1280,
+   "seats_left": 30
+  },
+  {
+   "flight_id": "FL0035",
+   "flight_no": "3U4276",
+   "origin": "武汉",
+   "dest": "深圳",
+   "date": "2026-10-30",
+   "dep_time": "12:45",
+   "price_cny": 610,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0036",
+   "flight_no": "MU3269",
+   "origin": "武汉",
+   "dest": "深圳",
+   "date": "2026-10-30",
+   "dep_time": "12:45",
+   "price_cny": 610,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0037",
+   "flight_no": "3U4013",
+   "origin": "武汉",
+   "dest": "深圳",
+   "date": "2026-10-31",
+   "dep_time": "21:30",
+   "price_cny": 1280,
+   "seats_left": 5
+  },
+  {
+   "flight_id": "FL0038",
+   "flight_no": "HU5755",
+   "origin": "武汉",
+   "dest": "深圳",
+   "date": "2026-10-31",
+   "dep_time": "08:30",
+   "price_cny": 950,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0039",
+   "flight_no": "CZ8940",
+   "origin": "北京",
+   "dest": "武汉",
+   "date": "2026-10-27",
+   "dep_time": "12:30",
+   "price_cny": 1280,
+   "seats_left": 12
+  },
+  {
+   "flight_id": "FL0040",
+   "flight_no": "MU9569",
+   "origin": "北京",
+   "dest": "武汉",
+   "date": "2026-10-27",
+   "dep_time": "19:30",
+   "price_cny": 610,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0041",
+   "flight_no": "CZ3933",
+   "origin": "北京",
+   "dest": "武汉",
+   "date": "2026-10-27",
+   "dep_time": "17:45",
+   "price_cny": 610,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0042",
+   "flight_no": "MU6121",
+   "origin": "北京",
+   "dest": "武汉",
+   "date": "2026-10-28",
+   "dep_time": "19:45",
+   "price_cny": 450,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0043",
+   "flight_no": "HU1730",
+   "origin": "北京",
+   "dest": "武汉",
+   "date": "2026-10-28",
+   "dep_time": "19:30",
+   "price_cny": 520,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0044",
+   "flight_no": "HU1353",
+   "origin": "北京",
+   "dest": "武汉",
+   "date": "2026-10-28",
+   "dep_time": "08:45",
+   "price_cny": 520,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0045",
+   "flight_no": "3U3547",
+   "origin": "北京",
+   "dest": "武汉",
+   "date": "2026-10-29",
+   "dep_time": "13:30",
+   "price_cny": 450,
+   "seats_left": 30
+  },
+  {
+   "flight_id": "FL0046",
+   "flight_no": "3U4893",
+   "origin": "北京",
+   "dest": "武汉",
+   "date": "2026-10-29",
+   "dep_time": "13:45",
+   "price_cny": 520,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0047",
+   "flight_no": "CZ4717",
+   "origin": "北京",
+   "dest": "武汉",
+   "date": "2026-10-30",
+   "dep_time": "19:00",
+   "price_cny": 950,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0048",
+   "flight_no": "MU2095",
+   "origin": "北京",
+   "dest": "武汉",
+   "date": "2026-10-30",
+   "dep_time": "16:30",
+   "price_cny": 950,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0049",
+   "flight_no": "3U6874",
+   "origin": "北京",
+   "dest": "武汉",
+   "date": "2026-10-31",
+   "dep_time": "08:30",
+   "price_cny": 610,
+   "seats_left": 12
+  },
+  {
+   "flight_id": "FL0050",
+   "flight_no": "HU5967",
+   "origin": "北京",
+   "dest": "武汉",
+   "date": "2026-10-31",
+   "dep_time": "08:15",
+   "price_cny": 450,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0051",
+   "flight_no": "MU8856",
+   "origin": "上海",
+   "dest": "广州",
+   "date": "2026-10-27",
+   "dep_time": "19:45",
+   "price_cny": 950,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0052",
+   "flight_no": "MU6322",
+   "origin": "上海",
+   "dest": "广州",
+   "date": "2026-10-27",
+   "dep_time": "16:45",
+   "price_cny": 450,
+   "seats_left": 5
+  },
+  {
+   "flight_id": "FL0053",
+   "flight_no": "CZ3327",
+   "origin": "上海",
+   "dest": "广州",
+   "date": "2026-10-27",
+   "dep_time": "19:15",
+   "price_cny": 950,
+   "seats_left": 5
+  },
+  {
+   "flight_id": "FL0054",
+   "flight_no": "HU2347",
+   "origin": "上海",
+   "dest": "广州",
+   "date": "2026-10-28",
+   "dep_time": "21:15",
+   "price_cny": 1280,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0055",
+   "flight_no": "3U3391",
+   "origin": "上海",
+   "dest": "广州",
+   "date": "2026-10-28",
+   "dep_time": "08:15",
+   "price_cny": 450,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0056",
+   "flight_no": "HU1250",
+   "origin": "上海",
+   "dest": "广州",
+   "date": "2026-10-28",
+   "dep_time": "17:45",
+   "price_cny": 520,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0057",
+   "flight_no": "CZ2487",
+   "origin": "上海",
+   "dest": "广州",
+   "date": "2026-10-29",
+   "dep_time": "07:15",
+   "price_cny": 610,
+   "seats_left": 30
+  },
+  {
+   "flight_id": "FL0058",
+   "flight_no": "HU5750",
+   "origin": "上海",
+   "dest": "广州",
+   "date": "2026-10-29",
+   "dep_time": "20:00",
+   "price_cny": 950,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0059",
+   "flight_no": "MU1550",
+   "origin": "上海",
+   "dest": "广州",
+   "date": "2026-10-30",
+   "dep_time": "15:45",
+   "price_cny": 1280,
+   "seats_left": 2
+  },
+  {
+   "flight_id": "FL0060",
+   "flight_no": "CZ9668",
+   "origin": "上海",
+   "dest": "广州",
+   "date": "2026-10-30",
+   "dep_time": "07:15",
+   "price_cny": 450,
+   "seats_left": 12
+  },
+  {
+   "flight_id": "FL0061",
+   "flight_no": "MU4234",
+   "origin": "上海",
+   "dest": "广州",
+   "date": "2026-10-31",
+   "dep_time": "14:15",
+   "price_cny": 380,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0062",
+   "flight_no": "HU6059",
+   "origin": "上海",
+   "dest": "广州",
+   "date": "2026-10-31",
+   "dep_time": "10:45",
+   "price_cny": 450,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0063",
+   "flight_no": "HU9033",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-27",
+   "dep_time": "11:00",
+   "price_cny": 520,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0064",
+   "flight_no": "MU4167",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-27",
+   "dep_time": "14:30",
+   "price_cny": 610,
+   "seats_left": 30
+  },
+  {
+   "flight_id": "FL0065",
+   "flight_no": "3U5594",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-27",
+   "dep_time": "21:00",
+   "price_cny": 1280,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0066",
+   "flight_no": "CZ5008",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-28",
+   "dep_time": "07:00",
+   "price_cny": 950,
+   "seats_left": 12
+  },
+  {
+   "flight_id": "FL0067",
+   "flight_no": "3U1750",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-28",
+   "dep_time": "09:30",
+   "price_cny": 380,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0068",
+   "flight_no": "CZ8814",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-28",
+   "dep_time": "21:00",
+   "price_cny": 520,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0069",
+   "flight_no": "CZ1068",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-29",
+   "dep_time": "16:15",
+   "price_cny": 380,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0070",
+   "flight_no": "3U6670",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-29",
+   "dep_time": "07:45",
+   "price_cny": 780,
+   "seats_left": 0
+  },
+  {
+   "flight_id": "FL0071",
+   "flight_no": "HU7678",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-30",
+   "dep_time": "16:00",
+   "price_cny": 950,
+   "seats_left": 30
+  },
+  {
+   "flight_id": "FL0072",
+   "flight_no": "3U2187",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-30",
+   "dep_time": "21:30",
+   "price_cny": 380,
+   "seats_left": 5
+  },
+  {
+   "flight_id": "FL0073",
+   "flight_no": "3U1066",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-30",
+   "dep_time": "21:45",
+   "price_cny": 520,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0074",
+   "flight_no": "3U2169",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-31",
+   "dep_time": "08:45",
+   "price_cny": 1280,
+   "seats_left": 1
+  },
+  {
+   "flight_id": "FL0075",
+   "flight_no": "3U4827",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-31",
+   "dep_time": "12:45",
+   "price_cny": 520,
+   "seats_left": 12
+  },
+  {
+   "flight_id": "FL0076",
+   "flight_no": "MU4511",
+   "origin": "深圳",
+   "dest": "成都",
+   "date": "2026-10-31",
+   "dep_time": "16:30",
+   "price_cny": 610,
+   "seats_left": 12
+  }
+ ],
+ "hotels": [
+  {
+   "hotel_id": "HT001",
+   "name": "武汉如家酒店",
+   "city": "武汉",
+   "price_per_night_cny": 319,
+   "rooms_left": 20,
+   "rating": 4.5
+  },
+  {
+   "hotel_id": "HT002",
+   "name": "武汉汉庭酒店",
+   "city": "武汉",
+   "price_per_night_cny": 429,
+   "rooms_left": 1,
+   "rating": 3.9
+  },
+  {
+   "hotel_id": "HT003",
+   "name": "武汉全季酒店",
+   "city": "武汉",
+   "price_per_night_cny": 189,
+   "rooms_left": 20,
+   "rating": 4.1
+  },
+  {
+   "hotel_id": "HT004",
+   "name": "武汉希尔顿欢朋酒店",
+   "city": "武汉",
+   "price_per_night_cny": 319,
+   "rooms_left": 1,
+   "rating": 4.0
+  },
+  {
+   "hotel_id": "HT005",
+   "name": "宜昌如家酒店",
+   "city": "宜昌",
+   "price_per_night_cny": 189,
+   "rooms_left": 8,
+   "rating": 4.7
+  },
+  {
+   "hotel_id": "HT006",
+   "name": "宜昌汉庭酒店",
+   "city": "宜昌",
+   "price_per_night_cny": 189,
+   "rooms_left": 0,
+   "rating": 4.8
+  },
+  {
+   "hotel_id": "HT007",
+   "name": "宜昌全季酒店",
+   "city": "宜昌",
+   "price_per_night_cny": 319,
+   "rooms_left": 8,
+   "rating": 4.2
+  },
+  {
+   "hotel_id": "HT008",
+   "name": "宜昌希尔顿欢朋酒店",
+   "city": "宜昌",
+   "price_per_night_cny": 189,
+   "rooms_left": 3,
+   "rating": 4.3
+  },
+  {
+   "hotel_id": "HT009",
+   "name": "襄阳如家酒店",
+   "city": "襄阳",
+   "price_per_night_cny": 239,
+   "rooms_left": 1,
+   "rating": 4.5
+  },
+  {
+   "hotel_id": "HT010",
+   "name": "襄阳汉庭酒店",
+   "city": "襄阳",
+   "price_per_night_cny": 559,
+   "rooms_left": 8,
+   "rating": 4.2
+  },
+  {
+   "hotel_id": "HT011",
+   "name": "襄阳全季酒店",
+   "city": "襄阳",
+   "price_per_night_cny": 559,
+   "rooms_left": 1,
+   "rating": 3.8
+  },
+  {
+   "hotel_id": "HT012",
+   "name": "襄阳希尔顿欢朋酒店",
+   "city": "襄阳",
+   "price_per_night_cny": 559,
+   "rooms_left": 20,
+   "rating": 4.5
+  },
+  {
+   "hotel_id": "HT013",
+   "name": "荆州如家酒店",
+   "city": "荆州",
+   "price_per_night_cny": 319,
+   "rooms_left": 0,
+   "rating": 4.1
+  },
+  {
+   "hotel_id": "HT014",
+   "name": "荆州汉庭酒店",
+   "city": "荆州",
+   "price_per_night_cny": 189,
+   "rooms_left": 20,
+   "rating": 4.7
+  },
+  {
+   "hotel_id": "HT015",
+   "name": "荆州全季酒店",
+   "city": "荆州",
+   "price_per_night_cny": 429,
+   "rooms_left": 3,
+   "rating": 4.4
+  },
+  {
+   "hotel_id": "HT016",
+   "name": "荆州希尔顿欢朋酒店",
+   "city": "荆州",
+   "price_per_night_cny": 559,
+   "rooms_left": 8,
+   "rating": 4.8
+  },
+  {
+   "hotel_id": "HT017",
+   "name": "北京如家酒店",
+   "city": "北京",
+   "price_per_night_cny": 429,
+   "rooms_left": 0,
+   "rating": 4.0
+  },
+  {
+   "hotel_id": "HT018",
+   "name": "北京汉庭酒店",
+   "city": "北京",
+   "price_per_night_cny": 239,
+   "rooms_left": 20,
+   "rating": 4.4
+  },
+  {
+   "hotel_id": "HT019",
+   "name": "北京全季酒店",
+   "city": "北京",
+   "price_per_night_cny": 429,
+   "rooms_left": 1,
+   "rating": 4.7
+  },
+  {
+   "hotel_id": "HT020",
+   "name": "北京希尔顿欢朋酒店",
+   "city": "北京",
+   "price_per_night_cny": 559,
+   "rooms_left": 8,
+   "rating": 4.1
+  },
+  {
+   "hotel_id": "HT021",
+   "name": "上海如家酒店",
+   "city": "上海",
+   "price_per_night_cny": 189,
+   "rooms_left": 0,
+   "rating": 4.8
+  },
+  {
+   "hotel_id": "HT022",
+   "name": "上海汉庭酒店",
+   "city": "上海",
+   "price_per_night_cny": 559,
+   "rooms_left": 0,
+   "rating": 4.5
+  },
+  {
+   "hotel_id": "HT023",
+   "name": "上海全季酒店",
+   "city": "上海",
+   "price_per_night_cny": 559,
+   "rooms_left": 20,
+   "rating": 4.6
+  },
+  {
+   "hotel_id": "HT024",
+   "name": "上海希尔顿欢朋酒店",
+   "city": "上海",
+   "price_per_night_cny": 239,
+   "rooms_left": 0,
+   "rating": 4.7
+  },
+  {
+   "hotel_id": "HT025",
+   "name": "深圳如家酒店",
+   "city": "深圳",
+   "price_per_night_cny": 189,
+   "rooms_left": 1,
+   "rating": 4.3
+  },
+  {
+   "hotel_id": "HT026",
+   "name": "深圳汉庭酒店",
+   "city": "深圳",
+   "price_per_night_cny": 559,
+   "rooms_left": 20,
+   "rating": 4.8
+  },
+  {
+   "hotel_id": "HT027",
+   "name": "深圳全季酒店",
+   "city": "深圳",
+   "price_per_night_cny": 429,
+   "rooms_left": 1,
+   "rating": 4.7
+  },
+  {
+   "hotel_id": "HT028",
+   "name": "深圳希尔顿欢朋酒店",
+   "city": "深圳",
+   "price_per_night_cny": 559,
+   "rooms_left": 0,
+   "rating": 4.1
+  }
+ ],
+ "transactions": [
+  {
+   "tx_id": "T0001",
+   "date": "2026-10-01",
+   "merchant": "共享单车",
+   "category": "交通",
+   "amount_cny": 47.66
+  },
+  {
+   "tx_id": "T0002",
+   "date": "2026-10-02",
+   "merchant": "物业费",
+   "category": "居住",
+   "amount_cny": 1466.07
+  },
+  {
+   "tx_id": "T0003",
+   "date": "2026-10-05",
+   "merchant": "药店",
+   "category": "购物",
+   "amount_cny": 240.47
+  },
+  {
+   "tx_id": "T0004",
+   "date": "2026-10-05",
+   "merchant": "书店",
+   "category": "娱乐",
+   "amount_cny": 35.53
+  },
+  {
+   "tx_id": "T0005",
+   "date": "2026-10-06",
+   "merchant": "电影院",
+   "category": "娱乐",
+   "amount_cny": 198.08
+  },
+  {
+   "tx_id": "T0006",
+   "date": "2026-10-06",
+   "merchant": "公交",
+   "category": "交通",
+   "amount_cny": 69.72
+  },
+  {
+   "tx_id": "T0007",
+   "date": "2026-10-06",
+   "merchant": "电影院",
+   "category": "娱乐",
+   "amount_cny": 88.95
+  },
+  {
+   "tx_id": "T0008",
+   "date": "2026-10-09",
+   "merchant": "星巴克",
+   "category": "餐饮",
+   "amount_cny": 53.29
+  },
+  {
+   "tx_id": "T0009",
+   "date": "2026-10-09",
+   "merchant": "共享单车",
+   "category": "交通",
+   "amount_cny": 69.16
+  },
+  {
+   "tx_id": "T0010",
+   "date": "2026-10-09",
+   "merchant": "星巴克",
+   "category": "餐饮",
+   "amount_cny": 40.47
+  },
+  {
+   "tx_id": "T0011",
+   "date": "2026-10-10",
+   "merchant": "房租",
+   "category": "居住",
+   "amount_cny": 2381.53
+  },
+  {
+   "tx_id": "T0012",
+   "date": "2026-10-10",
+   "merchant": "书店",
+   "category": "娱乐",
+   "amount_cny": 107.18
+  },
+  {
+   "tx_id": "T0013",
+   "date": "2026-10-12",
+   "merchant": "水电费",
+   "category": "居住",
+   "amount_cny": 677.18
+  },
+  {
+   "tx_id": "T0014",
+   "date": "2026-10-12",
+   "merchant": "超市",
+   "category": "购物",
+   "amount_cny": 197.06
+  },
+  {
+   "tx_id": "T0015",
+   "date": "2026-10-13",
+   "merchant": "兰州拉面",
+   "category": "餐饮",
+   "amount_cny": 29.12
+  },
+  {
+   "tx_id": "T0016",
+   "date": "2026-10-13",
+   "merchant": "游戏充值",
+   "category": "娱乐",
+   "amount_cny": 186.9
+  },
+  {
+   "tx_id": "T0017",
+   "date": "2026-10-14",
+   "merchant": "便利店",
+   "category": "购物",
+   "amount_cny": 188.45
+  },
+  {
+   "tx_id": "T0018",
+   "date": "2026-10-14",
+   "merchant": "电商平台",
+   "category": "购物",
+   "amount_cny": 279.89
+  },
+  {
+   "tx_id": "T0019",
+   "date": "2026-10-14",
+   "merchant": "公交",
+   "category": "交通",
+   "amount_cny": 38.78
+  },
+  {
+   "tx_id": "T0020",
+   "date": "2026-10-15",
+   "merchant": "便利店",
+   "category": "购物",
+   "amount_cny": 148.22
+  },
+  {
+   "tx_id": "T0021",
+   "date": "2026-10-16",
+   "merchant": "书店",
+   "category": "娱乐",
+   "amount_cny": 184.53
+  },
+  {
+   "tx_id": "T0022",
+   "date": "2026-10-16",
+   "merchant": "健身房",
+   "category": "娱乐",
+   "amount_cny": 189.32
+  },
+  {
+   "tx_id": "T0023",
+   "date": "2026-10-17",
+   "merchant": "游戏充值",
+   "category": "娱乐",
+   "amount_cny": 74.66
+  },
+  {
+   "tx_id": "T0024",
+   "date": "2026-10-17",
+   "merchant": "共享单车",
+   "category": "交通",
+   "amount_cny": 4.41
+  },
+  {
+   "tx_id": "T0025",
+   "date": "2026-10-17",
+   "merchant": "网约车",
+   "category": "交通",
+   "amount_cny": 40.37
+  },
+  {
+   "tx_id": "T0026",
+   "date": "2026-10-18",
+   "merchant": "电影院",
+   "category": "娱乐",
+   "amount_cny": 107.17
+  },
+  {
+   "tx_id": "T0027",
+   "date": "2026-10-19",
+   "merchant": "超市",
+   "category": "购物",
+   "amount_cny": 251.7
+  },
+  {
+   "tx_id": "T0028",
+   "date": "2026-10-19",
+   "merchant": "兰州拉面",
+   "category": "餐饮",
+   "amount_cny": 29.81
+  },
+  {
+   "tx_id": "T0029",
+   "date": "2026-10-19",
+   "merchant": "高铁票",
+   "category": "交通",
+   "amount_cny": 3.22
+  },
+  {
+   "tx_id": "T0030",
+   "date": "2026-10-22",
+   "merchant": "网约车",
+   "category": "交通",
+   "amount_cny": 5.83
+  },
+  {
+   "tx_id": "T0031",
+   "date": "2026-10-22",
+   "merchant": "外卖平台",
+   "category": "餐饮",
+   "amount_cny": 35.09
+  },
+  {
+   "tx_id": "T0032",
+   "date": "2026-10-23",
+   "merchant": "地铁",
+   "category": "交通",
+   "amount_cny": 12.21
+  },
+  {
+   "tx_id": "T0033",
+   "date": "2026-10-23",
+   "merchant": "公交",
+   "category": "交通",
+   "amount_cny": 39.04
+  },
+  {
+   "tx_id": "T0034",
+   "date": "2026-10-23",
+   "merchant": "外卖平台",
+   "category": "餐饮",
+   "amount_cny": 53.87
+  },
+  {
+   "tx_id": "T0035",
+   "date": "2026-10-25",
+   "merchant": "水果店",
+   "category": "购物",
+   "amount_cny": 231.16
+  },
+  {
+   "tx_id": "T0036",
+   "date": "2026-10-26",
+   "merchant": "电商平台",
+   "category": "购物",
+   "amount_cny": 175.01
+  }
+ ],
+ "accounts": [
+  {
+   "account_id": "ACC001",
+   "owner": "张三",
+   "currency": "CNY"
+  }
+ ],
+ "next_order_num": 6001,
+ "next_booking_num": 7001,
+ "bookings": [],
+ "reservations": [],
+ "products": [
+  {
+   "product_id": "P1001",
+   "name_zh": "无线鼠标",
+   "name_en": "wireless mouse",
+   "category": "电子产品",
+   "price_cny": 79.0,
+   "stock": 15
+  },
+  {
+   "product_id": "P1002",
+   "name_zh": "机械键盘",
+   "name_en": "mechanical keyboard",
+   "category": "电子产品",
+   "price_cny": 299.0,
+   "stock": 0
+  },
+  {
+   "product_id": "P1003",
+   "name_zh": "USB-C 扩展坞",
+   "name_en": "usb-c dock",
+   "category": "电子产品",
+   "price_cny": 189.0,
+   "stock": 0
+  },
+  {
+   "product_id": "P1004",
+   "name_zh": "27寸显示器",
+   "name_en": "27-inch monitor",
+   "category": "电子产品",
+   "price_cny": 1099.0,
+   "stock": 8
+  },
+  {
+   "product_id": "P1005",
+   "name_zh": "降噪耳机",
+   "name_en": "noise-cancelling headphones",
+   "category": "电子产品",
+   "price_cny": 599.0,
+   "stock": 8
+  },
+  {
+   "product_id": "P1006",
+   "name_zh": "A4打印纸500张",
+   "name_en": "a4 paper 500 sheets",
+   "category": "办公用品",
+   "price_cny": 24.5,
+   "stock": 40
+  },
+  {
+   "product_id": "P1007",
+   "name_zh": "中性笔10支装",
+   "name_en": "gel pens 10-pack",
+   "category": "办公用品",
+   "price_cny": 15.9,
+   "stock": 15
+  },
+  {
+   "product_id": "P1008",
+   "name_zh": "笔记本B5",
+   "name_en": "b5 notebook",
+   "category": "办公用品",
+   "price_cny": 9.9,
+   "stock": 100
+  },
+  {
+   "product_id": "P1009",
+   "name_zh": "订书机",
+   "name_en": "stapler",
+   "category": "办公用品",
+   "price_cny": 19.0,
+   "stock": 15
+  },
+  {
+   "product_id": "P1010",
+   "name_zh": "文件收纳架",
+   "name_en": "file organizer",
+   "category": "办公用品",
+   "price_cny": 45.0,
+   "stock": 100
+  },
+  {
+   "product_id": "P1011",
+   "name_zh": "保温杯500ml",
+   "name_en": "thermos 500ml",
+   "category": "家居",
+   "price_cny": 89.0,
+   "stock": 3
+  },
+  {
+   "product_id": "P1012",
+   "name_zh": "加湿器",
+   "name_en": "humidifier",
+   "category": "家居",
+   "price_cny": 129.0,
+   "stock": 0
+  },
+  {
+   "product_id": "P1013",
+   "name_zh": "LED台灯",
+   "name_en": "led desk lamp",
+   "category": "家居",
+   "price_cny": 99.0,
+   "stock": 100
+  },
+  {
+   "product_id": "P1014",
+   "name_zh": "收纳箱三件套",
+   "name_en": "storage box set of 3",
+   "category": "家居",
+   "price_cny": 69.0,
+   "stock": 40
+  },
+  {
+   "product_id": "P1015",
+   "name_zh": "拖鞋",
+   "name_en": "slippers",
+   "category": "家居",
+   "price_cny": 25.0,
+   "stock": 40
+  },
+  {
+   "product_id": "P1016",
+   "name_zh": "大米5kg",
+   "name_en": "rice 5kg",
+   "category": "食品饮料",
+   "price_cny": 39.9,
+   "stock": 0
+  },
+  {
+   "product_id": "P1017",
+   "name_zh": "橄榄油1L",
+   "name_en": "olive oil 1L",
+   "category": "食品饮料",
+   "price_cny": 88.0,
+   "stock": 40
+  },
+  {
+   "product_id": "P1018",
+   "name_zh": "挂耳咖啡20包",
+   "name_en": "drip coffee 20 bags",
+   "category": "食品饮料",
+   "price_cny": 59.0,
+   "stock": 3
+  },
+  {
+   "product_id": "P1019",
+   "name_zh": "蜂蜜500g",
+   "name_en": "honey 500g",
+   "category": "食品饮料",
+   "price_cny": 45.0,
+   "stock": 3
+  },
+  {
+   "product_id": "P1020",
+   "name_zh": "坚果混合装",
+   "name_en": "mixed nuts",
+   "category": "食品饮料",
+   "price_cny": 32.0,
+   "stock": 3
+  }
+ ],
+ "addresses": [
+  {
+   "address_id": "A1",
+   "label_zh": "家",
+   "label_en": "home",
+   "detail": "武汉市洪山区珞喻路100号1栋101"
+  },
+  {
+   "address_id": "A2",
+   "label_zh": "公司",
+   "label_en": "office",
+   "detail": "武汉市东湖高新区高新大道200号A座1502"
+  }
+ ],
+ "orders": [
+  {
+   "order_id": "O5001",
+   "product_id": "P1002",
+   "quantity": 1,
+   "address_id": "A1",
+   "status": "shipped",
+   "placed_at": "2026-10-24"
+  },
+  {
+   "order_id": "O5002",
+   "product_id": "P1016",
+   "quantity": 2,
+   "address_id": "A2",
+   "status": "pending",
+   "placed_at": "2026-10-26"
+  }
+ ]
+}

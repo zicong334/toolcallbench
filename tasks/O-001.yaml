@@ -1,0 +1,18 @@
+id: O-001
+domain: orders
+lang: zh
+difficulty: medium
+instruction: "帮我搜一下降噪耳机,如果那款商品有货,就下单1件送到公司(A2地址)。告诉我订单号和总金额。"
+tools: [search_products, get_product, place_order, cancel_order]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: search_products
+      args: {}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1005"}
+        quantity: {equals: 1}
+        address_id: {equals: "A2"}
+  final_answer:
+    must_include: ["O6001", "599"]
