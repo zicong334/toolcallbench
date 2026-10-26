@@ -17,14 +17,14 @@ from tcb.report.leaderboard import build_leaderboard_md, load_grades  # noqa: E4
 def dedupe(grades: list[dict]) -> list[dict]:
     latest: dict[tuple, dict] = {}
     for g in grades:
-        latest[(g["model_id"] or g["model"], g["task_id"], g["run_idx"])] = g
+        latest[(g.get("model") or g.get("model_id"), g["task_id"], g["run_idx"])] = g
     return list(latest.values())
 
 
 def stability_section(grades: list[dict]) -> str:
     runs = defaultdict(list)
     for g in grades:
-        runs[(g["model_id"] or g["model"], g["task_id"])].append(g["task_pass"])
+        runs[(g.get("model") or g.get("model_id"), g["task_id"])].append(g["task_pass"])
     multi = {k: v for k, v in runs.items() if len(v) > 1}
     if not multi:
         return ""

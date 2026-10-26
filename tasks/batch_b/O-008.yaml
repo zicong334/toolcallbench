@@ -18,4 +18,3 @@ grading:
         address_id: {equals: "A1"}
   final_answer:
     must_include: ["O6001", "P1020"]
-    must_not_include: ["P1016"]

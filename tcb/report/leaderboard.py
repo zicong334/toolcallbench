@@ -41,7 +41,7 @@ def _agg(records: list[dict]) -> dict:
 def build_leaderboard_md(grades: list[dict], title: str = "ToolCallBench-CN 排行榜") -> str:
     by_model: dict[str, list[dict]] = defaultdict(list)
     for r in grades:
-        by_model[r["model_id"] or r["model"]].append(r)
+        by_model[r.get("model") or r.get("model_id") or "?"].append(r)
     lines = [f"# {title}", "",
              "指标定义: 通过率=全部主指标联合; 工具选对=required 工具成功调用比例; "
              "参数精确=required 调用声明匹配器通过比例; 幻觉=无溯源参数值(每百参数); "

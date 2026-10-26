@@ -11,6 +11,7 @@ Metrics (all rule-based, zero LLM):
 """
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from .hallucination import scan_trajectory
@@ -81,11 +82,18 @@ def _grade_required(g: dict, calls: list[dict]) -> dict[str, Any]:
     }
 
 
+def _normalize_numbers(text: str) -> str:
+    """Strip thousands separators so '7,981.11' matches '7981.11'."""
+    return re.sub(r"(?<=\d),(?=\d)", "", text)
+
+
 def _grade_final(g: dict, final_content: str | None) -> dict[str, Any]:
     fa = g.get("final_answer") or {}
-    text = (final_content or "").casefold()
-    missing = [v for v in (fa.get("must_include") or []) if str(v).casefold() not in text]
-    banned = [v for v in (fa.get("must_not_include") or []) if str(v).casefold() in text]
+    text = _normalize_numbers((final_content or "").casefold())
+    missing = [v for v in (fa.get("must_include") or [])
+               if _normalize_numbers(str(v).casefold()) not in text]
+    banned = [v for v in (fa.get("must_not_include") or [])
+              if _normalize_numbers(str(v).casefold()) in text]
     if final_content is None:
         # no final message (loop ended on tool call at max turns)
         missing = missing or (fa.get("must_include") or ["<no final answer>"])
@@ -148,6 +156,7 @@ def grade_task(task: dict, traj: dict) -> dict[str, Any]:
         "difficulty": task.get("difficulty", "medium"),
         "model": traj.get("model"),
         "model_id": traj.get("model_id"),
+        "system_mode": traj.get("system_mode", "neutral"),
         "run_idx": traj.get("run_idx", 0),
         "status": traj.get("status"),
         "task_pass": task_pass,

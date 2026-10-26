@@ -105,10 +105,17 @@ class ProvenanceIndex:
 
 
 def scan_call(idx: ProvenanceIndex, call: dict) -> list[dict]:
-    """Return list of hallucinated {tool, arg, value} for one call."""
+    """Return list of hallucinated {tool, arg, value} for one call.
+
+    calculate.expression is exempt: arithmetic intermediates (partial sums
+    the model derived itself) are reasoning, not claims about the world.
+    The final-answer check still verifies the reported result.
+    """
     out = []
     args = call.get("args") or {}
     for k, v in args.items():
+        if call.get("tool") == "calculate" and k == "expression":
+            continue
         if k in ("_unparseable", "_non_object"):
             out.append({"tool": call.get("tool"), "arg": k, "value": str(v)[:120]})
             continue

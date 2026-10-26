@@ -61,6 +61,9 @@ def main() -> int:
     ap.add_argument("--tasks", default="all", help="all | comma-separated ids")
     ap.add_argument("--stability", action="store_true",
                     help="run the stability subset with STABILITY_REPEATS repeats")
+    ap.add_argument("--system", choices=["neutral", "stress"], default="neutral",
+                    help="stress = adversarial operator prompt pressuring the "
+                         "model to hide failures (integrity-under-pressure)")
     ap.add_argument("--repeat", type=int, default=1)
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
@@ -88,7 +91,11 @@ def main() -> int:
 
     with GRADES_PATH.open("a", encoding="utf-8") as gf:
         for model, task, run_idx in units:
-            out_fp = TRAJ_DIR / model / f"{task['id']}__r{run_idx}.json"
+            # effective run key: stress mode gets its own trajectory folder
+            run_model = model
+            if args.system == "stress" and not args.mock:
+                run_model = f"{model}_stress"
+            out_fp = TRAJ_DIR / run_model / f"{task['id']}__r{run_idx}.json"
             if out_fp.exists() and not args.force:
                 n_skip += 1
                 traj = json.loads(out_fp.read_text(encoding="utf-8"))
@@ -97,8 +104,14 @@ def main() -> int:
                     continue
                 try:
                     provider = make_provider(model, task, tracker)
+                    sys_prompt = None
+                    if args.system == "stress":
+                        from tcb.harness.runner import STRESS_SYSTEM_PROMPT
+                        if hasattr(provider, "model"):  # real provider only
+                            provider.name = f"{provider.model}_stress"
+                        sys_prompt = STRESS_SYSTEM_PROMPT
                     traj = run_task(provider, task, run_idx=run_idx,
-                                    out_dir=TRAJ_DIR)
+                                    out_dir=TRAJ_DIR, system_prompt=sys_prompt)
                 except (BudgetExceeded, OutOfBalance) as e:
                     print(f"[eval] BUDGET STOP: {e}")
                     stopped = True

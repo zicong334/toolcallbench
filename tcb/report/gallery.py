@@ -62,7 +62,7 @@ def build_gallery_md(grades: list[dict], traj_dir: Path, limit: int = 14) -> str
     out = ["# 失败案例图鉴(Failure Gallery)", "",
            f"共 {len(fails)} 个未通过单元,摘录 {len(picked)} 例,按失败类型归类。", ""]
     for g, tags in picked:
-        model = g["model_id"] or g["model"]
+        model = g.get("model") or g.get("model_id")
         fp = Path(traj_dir) / model / f"{g['task_id']}__r{g['run_idx']}.json"
         out.append(f"## {g['task_id']} · {model} · {', '.join(tags)}")
         if fp.exists():
