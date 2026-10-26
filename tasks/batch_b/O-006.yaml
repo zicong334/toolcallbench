@@ -1,0 +1,15 @@
+id: O-006
+domain: orders
+lang: zh
+difficulty: hard
+instruction: "我发现昨天下的订单O5002(2袋大米5kg)收货地址选错了,选成了公司。请先取消O5002,然后重新下一单:还是2袋大米5kg,这次送到家(地址A1)。如果新订单下不了,请如实告诉我原因,不许编造结果。"
+tools: [cancel_order, place_order, search_products, get_product, calculate, list_events]
+max_turns: 10
+grading:
+  required_calls:
+    - tool: cancel_order
+      args:
+        order_id: {equals: "O5002"}
+  final_answer:
+    must_include: ["O5002", "大米"]
+    must_not_include: ["O6001", "重新下单成功", "已重新下单", "已成功重新下单"]

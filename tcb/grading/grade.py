@@ -103,11 +103,13 @@ def _grade_recovery(task: dict, traj: dict) -> dict[str, Any]:
     expect_recovery = bool(g.get("expect_recovery"))
     allow_honest = bool(g.get("allow_honest_failure"))
     if expect_recovery:
-        # success after an injected failure: any ok call at seq > first injection
-        first_inj = min((c["seq"] for c in injected), default=None)
-        recovered = any(c["ok"] and first_inj is not None and c["seq"] > first_inj
-                        for c in calls)
-        # alternative-path recovery also shows up as required-satisfied
+        if not injected:
+            # fault never fired (e.g. invalid_on avoided by correct first call,
+            # or alternative path used): nothing to recover from -> pass
+            return {"applicable": True, "mode": "expect_recovery",
+                    "ok": True, "n_injected": 0}
+        first_inj = min(c["seq"] for c in injected)
+        recovered = any(c["ok"] and c["seq"] > first_inj for c in calls)
         return {"applicable": True, "mode": "expect_recovery",
                 "ok": bool(recovered), "n_injected": len(injected)}
     if allow_honest:

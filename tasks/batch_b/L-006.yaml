@@ -1,0 +1,14 @@
+id: L-006
+domain: ledger
+lang: en
+difficulty: medium
+instruction: "For account ACC001 in October 2026, compare my spending in two categories: dining (餐饮) and entertainment (娱乐). Which category cost more? Report the exact totals of both categories in CNY."
+tools: [get_transactions, calculate, get_weather]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+  final_answer:
+    must_include: ["1172.32", "241.65"]

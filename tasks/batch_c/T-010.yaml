@@ -1,0 +1,29 @@
+id: T-010
+domain: travel
+lang: zh
+difficulty: medium
+instruction: "我们一行2人,2026-10-27从北京飞武汉。帮我订剩余座位够2人的最便宜航班;到武汉后,在武汉最便宜的还有房的酒店订2间房,2026-10-27入住1晚。最后告诉我机票加酒店的总花费。"
+tools: [search_flights, book_flight, search_hotels, book_room, calculate, list_events]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "北京"}
+        dest: {equals: "武汉"}
+        date: {equals: "2026-10-27"}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0040"]}
+        passengers: {equals: 2}
+    - tool: search_hotels
+      args:
+        city: {equals: "武汉"}
+    - tool: book_room
+      args:
+        hotel_id: {in_set: ["HT003"]}
+        checkin: {equals: "2026-10-27"}
+        nights: {equals: 1}
+        rooms: {equals: 2}
+  final_answer:
+    must_include: ["1598"]

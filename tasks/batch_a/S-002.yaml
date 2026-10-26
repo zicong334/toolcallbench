@@ -1,0 +1,14 @@
+id: S-002
+domain: schedule
+lang: zh
+difficulty: easy
+instruction: "帮我查一下2026-10-29(周四)我有哪些日程安排,告诉我每个事件的事件编号、标题和开始时间。"
+tools: [list_events, get_weather, search_products]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-29"}
+  final_answer:
+    must_include: ["E103", "论文讨论", "09:00"]

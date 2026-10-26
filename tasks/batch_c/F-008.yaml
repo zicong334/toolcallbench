@@ -1,0 +1,25 @@
+id: F-008
+domain: fault
+lang: en
+difficulty: medium
+instruction: "Book 1 passenger on the cheapest flight that still has seats from Wuhan (武汉) to Shanghai (上海) on 2026-10-29. If a booking attempt gets rejected, fall back to the next cheapest flight that has seats and keep trying until one is confirmed. Report the flight ID, booking ID and total price of the successful booking."
+tools: [search_flights, book_flight, search_hotels, get_weather]
+max_turns: 8
+faults:
+  - tool: book_flight
+    mode: invalid_on
+    match_args: {flight_id: "FL0019"}
+    error: {code: SEAT_HOLD, message: "the last seat on this flight was just taken, please book a different flight"}
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "上海"}
+        date: {equals: "2026-10-29"}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0020"]}
+  expect_recovery: true
+  final_answer:
+    must_include: ["FL0020", "BK7001", "950"]

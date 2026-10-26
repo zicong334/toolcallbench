@@ -1,0 +1,24 @@
+id: F-009
+domain: fault
+lang: en
+difficulty: medium
+instruction: "Order 2 units of the drip coffee (挂耳咖啡20包) delivered to the home address (A1). If the order service returns a server error, keep retrying until the order goes through. Then report the order ID and the total amount."
+tools: [search_products, get_product, place_order, cancel_order, get_weather]
+max_turns: 8
+faults:
+  - tool: place_order
+    mode: fail_n_times
+    fail_times: 2
+    error: {code: SERVER_ERROR, message: "order service internal error, please retry"}
+grading:
+  required_calls:
+    - tool: search_products
+      args: {}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1018"}
+        quantity: {equals: 2}
+        address_id: {equals: "A1"}
+  expect_recovery: true
+  final_answer:
+    must_include: ["O6001", "118"]

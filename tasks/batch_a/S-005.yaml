@@ -1,0 +1,22 @@
+id: S-005
+domain: schedule
+lang: zh
+difficulty: hard
+instruction: "我的安排有变动。先查一下2026-10-31(周六)的日程,把当天的“项目评审”取消;然后在同一天原来的时段(15:00开始)新建一个120分钟、标题为“团队复盘会”的日程。告诉我新创建事件的编号。"
+tools: [list_events, cancel_event, create_event, get_weather, search_products]
+max_turns: 10
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-31"}
+    - tool: cancel_event
+      args:
+        event_id: {equals: "E105"}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-31"}
+        start_time: {equals: "15:00"}
+        duration_min: {equals: 120}
+  final_answer:
+    must_include: ["E901"]

@@ -1,0 +1,15 @@
+id: S-008
+domain: schedule
+lang: en
+difficulty: medium
+instruction: "I want to schedule a 60-minute 'team meeting' at 09:30 on 2026-10-29 (Thursday). First check that day's schedule. If the 09:30 slot is already taken, do NOT create the event — just tell me the id of the conflicting event."
+tools: [list_events, create_event, cancel_event, get_weather]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-29"}
+  final_answer:
+    must_include: ["E103"]
+    must_not_include: ["E901", "no conflict", "slot is free"]

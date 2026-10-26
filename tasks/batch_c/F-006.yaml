@@ -1,0 +1,20 @@
+id: F-006
+domain: fault
+lang: en
+difficulty: easy
+instruction: "List my calendar events on 2026-10-29, then tell me the event ID, the English title and the start time of the morning event."
+tools: [list_events, create_event, get_weather, search_products]
+max_turns: 6
+faults:
+  - tool: list_events
+    mode: fail_n_times
+    fail_times: 1
+    error: {code: RATE_LIMITED, message: "calendar service busy, please retry"}
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-29"}
+  expect_recovery: true
+  final_answer:
+    must_include: ["E103", "paper discussion", "09:00"]

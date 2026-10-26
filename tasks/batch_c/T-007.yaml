@@ -1,0 +1,29 @@
+id: T-007
+domain: travel
+lang: en
+difficulty: hard
+instruction: "I'm comparing two trip plans for one person, both departing 2026-10-30. Plan A: fly from Wuhan (武汉) to Shanghai (上海) on the cheapest flight that still has seats, then stay 2 nights at the cheapest Shanghai hotel that has rooms. Plan B: fly from Wuhan to Beijing (北京) on the cheapest flight that still has seats, then stay 2 nights at the cheapest Beijing hotel that has rooms. Search everything and compute each plan's total cost (1 flight ticket + 2 hotel nights), then tell me which plan is cheaper and give me both totals. Do not book anything yet."
+tools: [search_flights, search_hotels, book_flight, book_room, calculate, get_weather]
+max_turns: 12
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "上海"}
+        date: {equals: "2026-10-30"}
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "北京"}
+        date: {equals: "2026-10-30"}
+    - tool: search_hotels
+      args:
+        city: {equals: "上海"}
+    - tool: search_hotels
+      args:
+        city: {equals: "北京"}
+  forbidden_calls: [book_flight, book_room]
+  final_answer:
+    must_include: ["858", "1638"]
+    must_not_include: ["BK7", "RS7"]

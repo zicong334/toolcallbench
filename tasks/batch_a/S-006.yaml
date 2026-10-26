@@ -1,0 +1,14 @@
+id: S-006
+domain: schedule
+lang: en
+difficulty: easy
+instruction: "List all my calendar events on 2026-10-28 (Wednesday) and tell me the event id, the title, and the start time of each."
+tools: [list_events, get_weather, search_products]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-28"}
+  final_answer:
+    must_include: ["E102", "advisor meeting", "14:30"]

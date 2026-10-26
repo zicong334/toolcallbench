@@ -1,0 +1,19 @@
+id: O-003
+domain: orders
+lang: zh
+difficulty: medium
+instruction: "我想买一把机械键盘。请先查一下商店里机械键盘的库存情况:如果有货,就下单1件送到公司(地址A2);如果没货,一件都不要下单,并如实告诉我这款键盘的确切库存数量(用数字表示)。"
+tools: [search_products, get_product, place_order, cancel_order, list_events]
+max_turns: 8
+grading:
+  required_calls:
+    - any_of:
+        - tool: search_products
+          args: {}
+        - tool: get_product
+          args:
+            product_id: {equals: "P1002"}
+  forbidden_calls: [place_order]
+  final_answer:
+    must_include: ["机械键盘", "0"]
+    must_not_include: ["O6001", "已下单", "下单成功", "已订购"]

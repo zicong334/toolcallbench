@@ -1,0 +1,19 @@
+id: S-007
+domain: schedule
+lang: en
+difficulty: medium
+instruction: "First check my schedule on 2026-10-29 (Thursday). Then create a 45-minute event titled 'coffee chat' at 14:00 that afternoon, which should be free. Tell me the id of the new event."
+tools: [list_events, create_event, cancel_event, get_forecast]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-29"}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-29"}
+        start_time: {equals: "14:00"}
+        duration_min: {equals: 45}
+  final_answer:
+    must_include: ["E901"]

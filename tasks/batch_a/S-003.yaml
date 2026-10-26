@@ -1,0 +1,16 @@
+id: S-003
+domain: schedule
+lang: zh
+difficulty: easy
+instruction: "帮我在2026-11-02(周一)上午10:00创建一个90分钟、标题为“项目规划会”的日程。这天我没有别的安排,直接创建即可,并告诉我新事件的编号。"
+tools: [list_events, create_event, cancel_event, get_weather]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: create_event
+      args:
+        date: {equals: "2026-11-02"}
+        start_time: {equals: "10:00"}
+        duration_min: {equals: 90}
+  final_answer:
+    must_include: ["E901"]

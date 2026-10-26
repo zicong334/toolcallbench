@@ -1,0 +1,15 @@
+id: W-006
+domain: weather
+lang: zh
+difficulty: hard
+instruction: "今天是2026-10-27。帮我看看十堰未来3天(2026-10-27到2026-10-29)的天气预报,告诉我这3天里哪一天的最高气温最高(日期请用YYYY-MM-DD格式),以及那天的最高气温是多少度。"
+tools: [get_forecast, get_weather, list_events, search_products]
+max_turns: 10
+grading:
+  required_calls:
+    - tool: get_forecast
+      args:
+        city: {equals: "十堰"}
+        days: {in_set: [3, 4, 5, 6, 7]}
+  final_answer:
+    must_include: ["2026-10-28", "16"]

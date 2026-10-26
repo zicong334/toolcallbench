@@ -1,0 +1,19 @@
+id: T-003
+domain: travel
+lang: zh
+difficulty: easy
+instruction: "帮我订2026-10-29武汉飞北京的航班,要求下午出发(12:00到18:00之间起飞),1人。如果有多个符合条件的下午航班,就订其中最便宜的。订完后告诉我预订号和票价。"
+tools: [search_flights, book_flight, search_hotels, get_transactions]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "北京"}
+        date: {equals: "2026-10-29"}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0009"]}
+  final_answer:
+    must_include: ["BK7001", "520"]

@@ -1,0 +1,18 @@
+id: T-006
+domain: travel
+lang: en
+difficulty: easy
+instruction: "Look up all flights from Beijing (北京) to Wuhan (武汉) on 2026-10-31 and report each option's flight ID, departure time, price and seats left. Do not book anything — just tell me which flight is the cheapest one that still has seats, and its price."
+tools: [search_flights, book_flight, search_hotels, get_forecast]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "北京"}
+        dest: {equals: "武汉"}
+        date: {equals: "2026-10-31"}
+  forbidden_calls: [book_flight]
+  final_answer:
+    must_include: ["FL0050", "450"]
+    must_not_include: ["BK7"]

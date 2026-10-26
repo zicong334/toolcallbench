@@ -1,0 +1,20 @@
+id: W-007
+domain: weather
+lang: en
+difficulty: easy
+instruction: "Today is 2026-10-27. What will the weather be like in Seattle the day after tomorrow? Report the high temperature and the condition."
+tools: [get_weather, get_forecast, list_events]
+max_turns: 6
+grading:
+  required_calls:
+    - any_of:
+        - tool: get_weather
+          args:
+            city: {equals: "Seattle"}
+            date: {equals: "2026-10-29"}
+        - tool: get_forecast
+          args:
+            city: {equals: "Seattle"}
+            days: {in_set: [3, 4, 5, 6, 7]}
+  final_answer:
+    must_include: ["24", "moderate rain"]

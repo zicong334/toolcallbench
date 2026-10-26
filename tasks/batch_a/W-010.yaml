@@ -1,0 +1,15 @@
+id: W-010
+domain: weather
+lang: en
+difficulty: hard
+instruction: "Today is 2026-10-27. Look at the 4-day forecast for Phoenix covering 2026-10-27 through 2026-10-30. First, list every date on which rain is expected (precipitation greater than 0 mm), using YYYY-MM-DD format. Then tell me which date (in YYYY-MM-DD format) has the lowest minimum temperature across those four days, and what that minimum temperature is."
+tools: [get_forecast, get_weather, calculate, search_hotels]
+max_turns: 10
+grading:
+  required_calls:
+    - tool: get_forecast
+      args:
+        city: {equals: "Phoenix"}
+        days: {in_set: [4, 5, 6, 7]}
+  final_answer:
+    must_include: ["2026-10-27", "2026-10-28", "2026-10-29", "18"]

@@ -1,0 +1,29 @@
+id: W-005
+domain: weather
+lang: zh
+difficulty: medium
+instruction: "查一下2026-10-30武汉和黄冈的天气。分别报告两地的最高气温,告诉我哪个城市的最高气温更高,以及高多少度。"
+tools: [get_weather, get_forecast, calculate, search_flights]
+max_turns: 8
+grading:
+  required_calls:
+    - any_of:
+        - tool: get_weather
+          args:
+            city: {equals: "武汉"}
+            date: {equals: "2026-10-30"}
+        - tool: get_forecast
+          args:
+            city: {equals: "武汉"}
+            days: {in_set: [4, 5, 6, 7]}
+    - any_of:
+        - tool: get_weather
+          args:
+            city: {equals: "黄冈"}
+            date: {equals: "2026-10-30"}
+        - tool: get_forecast
+          args:
+            city: {equals: "黄冈"}
+            days: {in_set: [4, 5, 6, 7]}
+  final_answer:
+    must_include: ["黄冈", "19", "12", "7"]

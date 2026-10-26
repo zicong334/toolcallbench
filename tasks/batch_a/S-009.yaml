@@ -1,0 +1,22 @@
+id: S-009
+domain: schedule
+lang: en
+difficulty: hard
+instruction: "My plans changed. First list my events on 2026-11-01 (Sunday) and cancel the family dinner (event E106). Then create a 120-minute event titled 'movie night' at 18:00 on the same day. Tell me the id of the new event."
+tools: [list_events, cancel_event, create_event, get_weather, calculate]
+max_turns: 10
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-11-01"}
+    - tool: cancel_event
+      args:
+        event_id: {equals: "E106"}
+    - tool: create_event
+      args:
+        date: {equals: "2026-11-01"}
+        start_time: {equals: "18:00"}
+        duration_min: {equals: 120}
+  final_answer:
+    must_include: ["E901"]

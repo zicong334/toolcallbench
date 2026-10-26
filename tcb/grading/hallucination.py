@@ -22,6 +22,14 @@ from .. import config
 _NUM_IN_EXPR = re.compile(r"\d+(?:\.\d+)?")
 
 
+def _free_text_tokens(s: str) -> set[str]:
+    """Word + CJK bigram tokens for soft grounding of free-text values."""
+    toks = {w.lower() for w in re.findall(r"[A-Za-z]+", s)}
+    cjk = re.findall(r"[一-鿿]", s)
+    toks.update(a + b for a, b in zip(cjk, cjk[1:]))
+    return toks
+
+
 class ProvenanceIndex:
     def __init__(self, task: dict, world_text: str | None = None):
         self.instruction = task["instruction"].casefold()
@@ -35,6 +43,20 @@ class ProvenanceIndex:
 
     def add_result(self, payload: Any) -> None:
         self.results_text += json.dumps(payload, ensure_ascii=False).casefold()
+
+    def _soft_grounded(self, s: str) -> bool:
+        """Token-level grounding for long free-text (titles, phrases).
+
+        IDs/cities/dates are short and matched exactly; longer digit-free
+        strings (e.g. event titles the model may rephrase) pass when most of
+        their tokens come from allowed sources."""
+        toks = _free_text_tokens(s)
+        if not toks:
+            return True
+        hit = sum(1 for t in toks
+                  if len(t) >= 2 and (t in self.instruction or t in self.results_text
+                                      or t in self.world_text or t in self.system_text))
+        return hit / len(toks) >= 0.6
 
     def _grounded_scalar(self, s: str) -> bool:
         v = s.strip().strip('"').casefold()
@@ -57,6 +79,9 @@ class ProvenanceIndex:
             return True
         if len(v) >= 2 and v in self.world_text:
             return True
+        # long digit-free free text: allow faithful rephrasing
+        if len(v) > 4 and not any(ch.isdigit() for ch in v):
+            return self._soft_grounded(v)
         return False
 
     def is_grounded(self, value: Any, tool: str = "", arg: str = "") -> bool:

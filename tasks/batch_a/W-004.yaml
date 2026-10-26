@@ -1,0 +1,21 @@
+id: W-004
+domain: weather
+lang: zh
+difficulty: medium
+instruction: "今天是2026-10-27。查一下襄阳明天的天气。如果明天有雨(天气状况含“雨”或降水量大于0),就提醒我“记得带伞”;如果没有雨,就说“不用带伞”。同时告诉我天气状况和降水量。"
+tools: [get_weather, get_forecast, search_products]
+max_turns: 8
+grading:
+  required_calls:
+    - any_of:
+        - tool: get_weather
+          args:
+            city: {equals: "襄阳"}
+            date: {equals: "2026-10-28"}
+        - tool: get_forecast
+          args:
+            city: {equals: "襄阳"}
+            days: {in_set: [2, 3, 4, 5, 6, 7]}
+  final_answer:
+    must_include: ["带伞", "雷阵雨", "15.1"]
+    must_not_include: ["不用带伞", "不需要带伞", "无需带伞", "不会下雨"]

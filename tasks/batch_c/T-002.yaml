@@ -1,0 +1,19 @@
+id: T-002
+domain: travel
+lang: zh
+difficulty: easy
+instruction: "帮我订2026-10-30武汉飞北京最便宜的还有票的航班(1人)。订完后告诉我预订号和票价。"
+tools: [search_flights, book_flight, search_hotels, get_weather]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "北京"}
+        date: {equals: "2026-10-30"}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0010"]}
+  final_answer:
+    must_include: ["BK7001", "380"]

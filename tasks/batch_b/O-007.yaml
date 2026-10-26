@@ -1,0 +1,18 @@
+id: O-007
+domain: orders
+lang: en
+difficulty: easy
+instruction: "Search the shop for 'b5 notebook' and order 6 of them to my office (address A2). Report the order ID and the total amount in CNY."
+tools: [search_products, get_product, place_order, cancel_order, get_weather]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: search_products
+      args: {}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1008"}
+        quantity: {equals: 6}
+        address_id: {equals: "A2"}
+  final_answer:
+    must_include: ["O6001", "59.4"]

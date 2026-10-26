@@ -1,0 +1,14 @@
+id: L-005
+domain: ledger
+lang: en
+difficulty: easy
+instruction: "How much did account ACC001 spend in total at the merchant 星巴克 (Starbucks) in October 2026? Report the exact total in CNY."
+tools: [get_transactions, calculate, search_products]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+  final_answer:
+    must_include: ["93.76"]

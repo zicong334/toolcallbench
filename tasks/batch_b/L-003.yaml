@@ -1,0 +1,14 @@
+id: L-003
+domain: ledger
+lang: zh
+difficulty: medium
+instruction: "帮我找出账户ACC001在2026年10月金额最大的一笔交易,告诉我这笔交易的交易ID、商户名称和金额(精确到分)。"
+tools: [get_transactions, calculate, get_weather]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+  final_answer:
+    must_include: ["T0011", "房租", "2381.53"]

@@ -1,0 +1,14 @@
+id: L-007
+domain: ledger
+lang: en
+difficulty: medium
+instruction: "For account ACC001 in October 2026: how many transactions were there in total, and what was my total spending across all categories? Report the transaction count and the exact total amount in CNY."
+tools: [get_transactions, calculate, list_events]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+  final_answer:
+    must_include: ["36", "7981.11"]

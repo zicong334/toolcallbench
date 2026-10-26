@@ -1,0 +1,20 @@
+id: F-005
+domain: fault
+lang: zh
+difficulty: medium
+instruction: "帮我查账户ACC001在2026年10月的全部交易,算出「交通」类的总支出,精确到分,只要告诉我这个总数。"
+tools: [get_transactions, calculate, search_products, get_weather]
+max_turns: 8
+faults:
+  - tool: get_transactions
+    mode: fail_n_times
+    fail_times: 2
+    error: {code: SERVER_ERROR, message: "ledger service internal error, please retry"}
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+  expect_recovery: true
+  final_answer:
+    must_include: ["330.4"]

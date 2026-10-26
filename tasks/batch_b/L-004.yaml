@@ -1,0 +1,14 @@
+id: L-004
+domain: ledger
+lang: zh
+difficulty: hard
+instruction: "帮我把账户ACC001在2026年10月的消费按五个类别(餐饮、交通、购物、居住、娱乐)全部统计一遍:哪一类花得最多?哪一类花得最少?把这两个类别的名称和各自的确切总额(精确到分)都告诉我。"
+tools: [get_transactions, calculate, list_events]
+max_turns: 10
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+  final_answer:
+    must_include: ["居住", "4524.78", "餐饮", "241.65"]

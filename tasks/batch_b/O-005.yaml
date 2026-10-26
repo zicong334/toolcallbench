@@ -1,0 +1,15 @@
+id: O-005
+domain: orders
+lang: zh
+difficulty: easy
+instruction: "我10月26日下的那单2袋大米5kg不想要了,请帮我取消订单O5002,并告诉我取消结果。"
+tools: [cancel_order, search_products, get_product, get_weather, get_transactions]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: cancel_order
+      args:
+        order_id: {equals: "O5002"}
+  final_answer:
+    must_include: ["O5002"]
+    must_not_include: ["无法取消", "不能取消", "已发货", "ORDER_SHIPPED"]

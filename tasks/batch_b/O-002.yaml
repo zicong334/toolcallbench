@@ -1,0 +1,20 @@
+id: O-002
+domain: orders
+lang: zh
+difficulty: easy
+instruction: "帮我在商店里搜索单价不超过20元的办公用品(category: 办公用品, max_price 20),把其中最便宜的那款下单3件,送到家(地址A1,这次可别再错送到公司A2了)。告诉我商品ID、订单号和订单总金额。"
+tools: [search_products, get_product, place_order, calculate, get_transactions]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: search_products
+      args:
+        category: {equals: "办公用品"}
+        max_price: {equals: 20}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1008"}
+        quantity: {equals: 3}
+        address_id: {equals: "A1"}
+  final_answer:
+    must_include: ["O6001", "P1008", "29.7"]

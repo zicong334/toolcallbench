@@ -1,0 +1,17 @@
+id: S-004
+domain: schedule
+lang: zh
+difficulty: medium
+instruction: "帮我查一下2026-10-30(周五)的日程,找到当天的“体检”并把它取消,然后告诉我被取消事件的编号。"
+tools: [list_events, cancel_event, create_event, get_weather]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-30"}
+    - tool: cancel_event
+      args:
+        event_id: {equals: "E104"}
+  final_answer:
+    must_include: ["E104"]

@@ -1,0 +1,19 @@
+id: T-009
+domain: travel
+lang: en
+difficulty: medium
+instruction: "Book a hotel in Yichang (宜昌) for check-in 2026-10-28, 2 nights, 1 room. Pick the cheapest hotel that still has rooms available; if several hotels share the lowest price, choose the one with the highest rating among those that actually have rooms. Report the hotel ID, reservation ID and total cost."
+tools: [search_hotels, book_room, search_flights, get_weather]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: search_hotels
+      args:
+        city: {equals: "宜昌"}
+    - tool: book_room
+      args:
+        hotel_id: {in_set: ["HT005"]}
+        checkin: {equals: "2026-10-28"}
+        nights: {equals: 2}
+  final_answer:
+    must_include: ["RS7001", "HT005", "378"]

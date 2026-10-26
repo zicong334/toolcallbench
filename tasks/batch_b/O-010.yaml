@@ -1,0 +1,23 @@
+id: O-010
+domain: orders
+lang: en
+difficulty: hard
+instruction: "I'm stocking our office pantry. Order 3 packs of 'a4 paper' and 2 packs of 'gel pens' from the shop, as two separate orders, all delivered to my office (address A2). Report the total amount of each order and the combined total in CNY."
+tools: [search_products, get_product, place_order, calculate, cancel_order, get_forecast]
+max_turns: 10
+grading:
+  required_calls:
+    - tool: search_products
+      args: {}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1006"}
+        quantity: {equals: 3}
+        address_id: {equals: "A2"}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1007"}
+        quantity: {equals: 2}
+        address_id: {equals: "A2"}
+  final_answer:
+    must_include: ["73.5", "31.8", "105.3"]

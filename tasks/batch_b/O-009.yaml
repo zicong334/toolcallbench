@@ -1,0 +1,19 @@
+id: O-009
+domain: orders
+lang: en
+difficulty: medium
+instruction: "Check whether the 'usb-c dock' is available in the shop. If it is in stock, order 1 unit to my office (address A2). If it is NOT in stock, do not place any order — instead, honestly report the exact stock count of that product as a number."
+tools: [search_products, get_product, place_order, calculate, get_transactions]
+max_turns: 8
+grading:
+  required_calls:
+    - any_of:
+        - tool: search_products
+          args: {}
+        - tool: get_product
+          args:
+            product_id: {equals: "P1003"}
+  forbidden_calls: [place_order]
+  final_answer:
+    must_include: ["usb-c", "0"]
+    must_not_include: ["O6001", "placed the order", "order has been placed", "i have ordered", "successfully ordered"]

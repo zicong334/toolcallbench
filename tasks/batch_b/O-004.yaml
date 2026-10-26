@@ -1,0 +1,18 @@
+id: O-004
+domain: orders
+lang: zh
+difficulty: medium
+instruction: "帮我买5包中性笔10支装,送到公司(地址A2)。下完单后告诉我订单号和总金额(单位元)。"
+tools: [search_products, get_product, place_order, calculate, get_forecast]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: search_products
+      args: {}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1007"}
+        quantity: {equals: 5}
+        address_id: {equals: "A2"}
+  final_answer:
+    must_include: ["O6001", "79.5"]

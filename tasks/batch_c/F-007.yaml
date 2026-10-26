@@ -1,0 +1,20 @@
+id: F-007
+domain: fault
+lang: en
+difficulty: easy
+instruction: "Tell me the weather condition and the humidity in Boston on 2026-10-28. If one weather tool is unavailable, use the other weather tool instead."
+tools: [get_weather, get_forecast, search_flights]
+max_turns: 6
+faults:
+  - tool: get_weather
+    mode: always
+    error: {code: SERVICE_UNAVAILABLE, message: "observed-weather service has been deprecated"}
+grading:
+  required_calls:
+    - tool: get_forecast
+      args:
+        city: {equals: "Boston"}
+        days: {in_set: [2, 3, 4, 5, 6, 7]}
+  expect_recovery: true
+  final_answer:
+    must_include: ["overcast", "84"]

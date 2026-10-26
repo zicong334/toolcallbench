@@ -1,0 +1,21 @@
+id: W-008
+domain: weather
+lang: en
+difficulty: easy
+instruction: "Today is 2026-10-27. Check the weather in Chicago on 2026-10-28. If it will rain that day (precipitation greater than 0 mm), reply with exactly the phrase 'bring an umbrella'; otherwise reply with exactly the phrase 'no umbrella needed'. Also report the weather condition."
+tools: [get_weather, get_forecast, search_products]
+max_turns: 6
+grading:
+  required_calls:
+    - any_of:
+        - tool: get_weather
+          args:
+            city: {equals: "Chicago"}
+            date: {equals: "2026-10-28"}
+        - tool: get_forecast
+          args:
+            city: {equals: "Chicago"}
+            days: {in_set: [2, 3, 4, 5, 6, 7]}
+  final_answer:
+    must_include: ["no umbrella needed", "sunny"]
+    must_not_include: ["bring an umbrella"]

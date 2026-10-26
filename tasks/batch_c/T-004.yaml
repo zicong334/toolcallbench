@@ -1,0 +1,20 @@
+id: T-004
+domain: travel
+lang: zh
+difficulty: medium
+instruction: "我们两个人要坐同一班飞机,2026-10-29从武汉飞上海。帮我订剩余座位够2人、价格最便宜的航班。订完后告诉我预订号和两人合计的总金额。"
+tools: [search_flights, book_flight, search_hotels, get_forecast]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "上海"}
+        date: {equals: "2026-10-29"}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0020"]}
+        passengers: {equals: 2}
+  final_answer:
+    must_include: ["BK7001", "1900"]

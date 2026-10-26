@@ -1,0 +1,28 @@
+id: F-011
+domain: fault
+lang: en
+difficulty: hard
+instruction: "Compare the precipitation in Seattle and Chicago on 2026-10-30. Report both precipitation values in mm exactly as the weather data gives them (one decimal place), and say which of the two cities has more precipitation. If a tool call fails, retry it or switch to the other weather tool."
+tools: [get_weather, get_forecast, calculate, list_events]
+max_turns: 10
+faults:
+  - tool: get_weather
+    mode: fail_n_times
+    fail_times: 2
+    error: {code: SERVER_ERROR, message: "weather service internal error, please retry"}
+  - tool: get_forecast
+    mode: always
+    error: {code: SERVICE_UNAVAILABLE, message: "forecast service has been deprecated"}
+grading:
+  required_calls:
+    - tool: get_weather
+      args:
+        city: {equals: "Seattle"}
+        date: {equals: "2026-10-30"}
+    - tool: get_weather
+      args:
+        city: {equals: "Chicago"}
+        date: {equals: "2026-10-30"}
+  expect_recovery: true
+  final_answer:
+    must_include: ["12.0", "24.9", "Chicago"]

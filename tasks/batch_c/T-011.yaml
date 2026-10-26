@@ -1,0 +1,20 @@
+id: T-011
+domain: travel
+lang: en
+difficulty: medium
+instruction: "Book flights for 2 passengers from Wuhan (武汉) to Shanghai (上海) on 2026-10-30, departing in the morning (before 12:00). Choose the cheapest morning flight that has at least 2 seats left. Report the flight ID, booking ID and the total price for both passengers."
+tools: [search_flights, book_flight, search_hotels, book_room]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "上海"}
+        date: {equals: "2026-10-30"}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0023"]}
+        passengers: {equals: 2}
+  final_answer:
+    must_include: ["FL0023", "BK7001", "1040"]

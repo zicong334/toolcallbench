@@ -42,7 +42,8 @@ class OracleMock:
         self.task = task
         self.plan = _expand_required(task)
         self.step = 0
-        self._retried = False
+        self._retries = 0
+        self._max_retries = 4
 
     def _last_tool_result_injected(self, messages: list[dict]) -> bool:
         for m in reversed(messages):
@@ -57,8 +58,12 @@ class OracleMock:
             required = spec["function"]["parameters"].get("required", [])
             for r in required:
                 if r not in args:
-                    args[r] = ("2026-10-27" if r == "date"
-                               else "ACC001" if r == "account_id" else "x")
+                    args[r] = ("2026-10-27" if r in ("date", "checkin")
+                               else "ACC001" if r == "account_id"
+                               else "1" if r in ("quantity", "passengers",
+                                                 "nights", "rooms", "days",
+                                                 "duration_min")
+                               else "1")
         self.step += 1
         return {"role": "assistant", "content": None,
                 "tool_calls": [{"id": f"mock_{self.step}", "name": call["tool"],
@@ -68,13 +73,14 @@ class OracleMock:
 
     def complete(self, messages: list[dict], tools: list[dict],
                  task_id: str = "") -> dict[str, Any]:
-        # retry-once semantics: if the previous tool result was an injected
-        # fault and we haven't retried this step yet, replay the same call.
-        if (self.step > 0 and not self._retried
+        # retry-on-injected-fault: replay the same step until it stops failing
+        if (self.step > 0 and self._retries < self._max_retries
                 and self._last_tool_result_injected(messages)):
-            self._retried = True
-            return self._emit(self.plan[self.step - 1], tools)
-        self._retried = False
+            self._retries += 1
+            self.step -= 1
+            out = self._emit(self.plan[self.step], tools)
+            return out
+        self._retries = 0
         if self.step < len(self.plan):
             return self._emit(self.plan[self.step], tools)
         fa = self.task["grading"].get("final_answer") or {}

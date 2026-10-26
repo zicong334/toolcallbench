@@ -1,0 +1,21 @@
+id: O-008
+domain: orders
+lang: en
+difficulty: medium
+instruction: "I'd like to buy a snack costing at most 60 CNY. Search the shop's 食品饮料 (food & drink) category with a maximum price of 60, compare the results, and order 1 unit of the cheapest product that is IN STOCK, delivered to my home (address A1). Report the product ID and the order ID."
+tools: [search_products, get_product, place_order, calculate, list_events]
+max_turns: 8
+grading:
+  required_calls:
+    - tool: search_products
+      args:
+        category: {equals: "食品饮料"}
+        max_price: {equals: 60}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1020"}
+        quantity: {equals: 1}
+        address_id: {equals: "A1"}
+  final_answer:
+    must_include: ["O6001", "P1020"]
+    must_not_include: ["P1016"]

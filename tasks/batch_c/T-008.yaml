@@ -1,0 +1,19 @@
+id: T-008
+domain: travel
+lang: en
+difficulty: easy
+instruction: "Book 1 passenger on the cheapest flight that still has seats from Wuhan (武汉) to Beijing (北京) on 2026-10-31. Be careful: the cheapest flight of the day may be sold out. Report the flight ID, booking ID and total price of the flight you actually booked."
+tools: [search_flights, book_flight, search_hotels, get_weather]
+max_turns: 6
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "北京"}
+        date: {equals: "2026-10-31"}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0014"]}
+  final_answer:
+    must_include: ["BK7001", "FL0014", "1280"]
