@@ -30,8 +30,8 @@ def classify(g: dict) -> list[str]:
     return tags or ["unknown"]
 
 
-def _condensed_traj(traj: dict, max_calls: int = 8) -> str:
-    lines = [f"> 指令: {traj.get('instruction', '')[:160]}"]
+def _condensed_traj(traj: dict, max_calls: int = 8, instruction: str = "") -> str:
+    lines = [f"> 指令: {(instruction or traj.get('instruction', ''))[:160]}"]
     for c in (traj.get("calls") or [])[:max_calls]:
         args = json.dumps(c.get("args"), ensure_ascii=False)
         if len(args) > 160:
@@ -46,6 +46,14 @@ def _condensed_traj(traj: dict, max_calls: int = 8) -> str:
 
 
 def build_gallery_md(grades: list[dict], traj_dir: Path, limit: int = 14) -> str:
+    # instruction lookup from task files (trajectories may predate storing it)
+    instr: dict[str, str] = {}
+    try:
+        from ..tasks.loader import load_tasks
+        for t in load_tasks():
+            instr[t["id"]] = t["instruction"]
+    except Exception:  # noqa: BLE001
+        pass
     fails = [g for g in grades if not g["task_pass"]]
     # prefer diverse (model, failure type) coverage
     seen: set[tuple[str, str]] = set()
@@ -68,7 +76,7 @@ def build_gallery_md(grades: list[dict], traj_dir: Path, limit: int = 14) -> str
         if fp.exists():
             traj = json.loads(fp.read_text(encoding="utf-8"))
             out.append("")
-            out.append(_condensed_traj(traj))
+            out.append(_condensed_traj(traj, instruction=instr.get(g["task_id"], "")))
             if g["hallucinations"]:
                 h = g["hallucinations"][:3]
                 out.append("")
