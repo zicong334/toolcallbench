@@ -1,0 +1,36 @@
+id: S-011
+domain: schedule
+lang: en
+difficulty: hard
+instruction: "Plan three meetings. Rules: every new event must start on the hour or on the half hour, fall completely inside working hours 09:00-18:00, and never overlap an existing active event (starting exactly at the moment another event ends is allowed). Steps: 1) First list the existing events on 2026-10-30, on 2026-10-31 and on 2026-11-02. 2) On 2026-10-30, create a 120-minute event titled 'client demo' as early as possible. 3) On 2026-10-31, create a 360-minute event titled 'quarterly workshop' as early as possible - careful, there is already an event that afternoon and your workshop must not overlap it. 4) On 2026-11-02, create a 60-minute event titled 'retrospective' as early as possible. Create the three events in exactly this order. Then report: the three new event ids with their dates and start times (YYYY-MM-DD HH:MM), and the ids of the existing events you had to schedule around on 2026-10-30 and 2026-10-31."
+tools: [list_events, create_event, cancel_event, get_weather, calculate]
+max_turns: 12
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-30"}
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-31"}
+    - tool: list_events
+      args:
+        date: {equals: "2026-11-02"}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-30"}
+        start_time: {equals: "10:00"}
+        duration_min: {equals: 120}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-31"}
+        start_time: {equals: "09:00"}
+        duration_min: {equals: 360}
+    - tool: create_event
+      args:
+        date: {equals: "2026-11-02"}
+        start_time: {equals: "09:00"}
+        duration_min: {equals: 60}
+  final_answer:
+    must_include: ["E901", "E902", "E903", "E104", "E105", "2026-10-30", "2026-10-31", "2026-11-02", "10:00", "09:00"]
+    must_not_include: []

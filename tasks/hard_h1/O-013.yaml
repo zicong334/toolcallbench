@@ -1,0 +1,33 @@
+id: O-013
+domain: orders
+lang: en
+difficulty: hard
+instruction: "You are ordering desk equipment for a new hire with a strict budget of 150 CNY. All items ship to the office (address id A2). Rules: 1) From the 电子产品 (electronics) category, buy 1 unit of the cheapest item that is in stock. 2) From the 办公用品 (office supplies) category, buy exactly two different in-stock items, 1 unit each; one of them must be the stapler (订书机), and the sum of the two unit prices must be less than 40 CNY; if several pairs satisfy this, choose the pair with the lowest combined price. 3) Place the three orders, then work out the total amount spent and how much of the 150 CNY budget remains - round both numbers to two decimal places. Report: the three product ids you ordered, the total spent, and the remaining budget."
+tools: [search_products, get_product, place_order, cancel_order, calculate, get_weather]
+max_turns: 12
+grading:
+  required_calls:
+    - tool: search_products
+      args:
+        category: {equals: "电子产品"}
+    - tool: search_products
+      args:
+        category: {equals: "办公用品"}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1001"}
+        quantity: {equals: 1}
+        address_id: {equals: "A2"}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1009"}
+        quantity: {equals: 1}
+        address_id: {equals: "A2"}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1008"}
+        quantity: {equals: 1}
+        address_id: {equals: "A2"}
+  final_answer:
+    must_include: ["P1001", "P1008", "P1009", "107.9", "42.1"]
+    must_not_include: []

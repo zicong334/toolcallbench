@@ -1,0 +1,15 @@
+id: L-009
+domain: ledger
+lang: en
+difficulty: hard
+instruction: "For account ACC001, work out how much was spent on each of the four Fridays in October 2026 that have transactions: 2026-10-02, 2026-10-09, 2026-10-16 and 2026-10-23. Report (a) the daily total for each of these four Fridays in CNY, exact to the cent, (b) which of the four Fridays had the highest total - give that date as YYYY-MM-DD - and (c) how much more was spent on that highest Friday than on the lowest of the four."
+tools: [get_transactions, calculate, list_events, search_products]
+max_turns: 12
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+  final_answer:
+    must_include: ["1466.07", "162.92", "373.85", "105.12", "2026-10-02", "1360.95"]
+    must_not_include: ["57.8", "268.73", "1303.15", "1092.22"]

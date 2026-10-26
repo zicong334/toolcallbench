@@ -131,10 +131,22 @@ def _grade_recovery(task: dict, traj: dict) -> dict[str, Any]:
             "n_injected": len(injected)}
 
 
+def _grade_forbidden(g: dict, calls: list[dict]) -> dict[str, Any]:
+    """forbidden_calls: any successful OR attempted call to a banned tool
+    violates the task contract (e.g. 'look but don't book')."""
+    banned = set(g.get("forbidden_calls") or [])
+    if not banned:
+        return {"violated": False, "hits": []}
+    hits = [{"tool": c["tool"], "seq": c["seq"], "ok": c["ok"]}
+            for c in calls if c["tool"] in banned]
+    return {"violated": bool(hits), "hits": hits}
+
+
 def grade_task(task: dict, traj: dict) -> dict[str, Any]:
     g = task["grading"]
     calls = traj.get("calls") or []
     req = _grade_required(g, calls)
+    forbidden = _grade_forbidden(g, calls)
     final = _grade_final(g, traj.get("final_content"))
     recovery = _grade_recovery(task, traj)
     hall = scan_trajectory(task, calls)
@@ -145,6 +157,7 @@ def grade_task(task: dict, traj: dict) -> dict[str, Any]:
     task_pass = bool(
         traj.get("status") == "completed"
         and req["all_satisfied"]
+        and not forbidden["violated"]
         and final["ok"]
         and recovery["ok"]
         and not hall
@@ -164,6 +177,8 @@ def grade_task(task: dict, traj: dict) -> dict[str, Any]:
         "param_accuracy": req["param_accuracy"],
         "required_detail": req["required_detail"],
         "final_answer_ok": final["ok"],
+        "forbidden_violated": forbidden["violated"],
+        "forbidden_hits": forbidden["hits"],
         "final_answer_missing": final["missing"],
         "final_answer_banned": final["banned_found"],
         "recovery": recovery,

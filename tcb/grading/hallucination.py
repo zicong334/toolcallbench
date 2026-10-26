@@ -20,6 +20,7 @@ from typing import Any
 from .. import config
 
 _NUM_IN_EXPR = re.compile(r"\d+(?:\.\d+)?")
+_HHMM = re.compile(r"^\d{1,2}:\d{2}$")
 
 
 def _free_text_tokens(s: str) -> set[str]:
@@ -63,6 +64,10 @@ class ProvenanceIndex:
         if not v:
             return True
         if v in ("true", "false", "null", "none"):
+            return True
+        # HH:MM clock values are derivable by arithmetic on world facts
+        # (start + duration); correctness is enforced by arg matchers instead.
+        if _HHMM.match(v):
             return True
         # small integers are generic quantities, not claims about the world
         try:

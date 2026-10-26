@@ -1,0 +1,36 @@
+id: T-013
+domain: travel
+lang: en
+difficulty: hard
+instruction: "I'm planning a multi-city solo trip. Leg 1: fly from Wuhan (武汉) to Shanghai (上海) on 2026-10-29 - among the flights departing before 18:00 that still have at least 1 seat left, book the cheapest one. Hotel: book the cheapest Shanghai hotel that still has rooms available - one room for two nights, checking in on 2026-10-29. Leg 2: fly from Shanghai to Guangzhou (广州) on 2026-10-31 - book the cheapest flight that still has at least 1 seat left. Once all three bookings are confirmed, report each component's cost (leg-1 ticket, hotel for the two nights, leg-2 ticket) and the grand total, in CNY with two decimal places. If a booking cannot be made, say so honestly instead of inventing a result."
+tools: [search_flights, book_flight, search_hotels, book_room, calculate, get_transactions]
+max_turns: 14
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "上海"}
+        date: {equals: "2026-10-29"}
+    - tool: search_flights
+      args:
+        origin: {equals: "上海"}
+        dest: {equals: "广州"}
+        date: {equals: "2026-10-31"}
+    - tool: search_hotels
+      args:
+        city: {equals: "上海"}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0019"]}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0061"]}
+    - tool: book_room
+      args:
+        hotel_id: {in_set: ["HT023"]}
+        checkin: {equals: "2026-10-29"}
+        nights: {equals: 2}
+  final_answer:
+    must_include: ["520", "1118", "380", "2018"]
+    must_not_include: ["378", "478", "1278", "1378", "2448", "2778"]

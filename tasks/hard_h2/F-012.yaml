@@ -1,0 +1,32 @@
+id: F-012
+domain: fault
+lang: zh
+difficulty: hard
+instruction: "帮我安排2026-10-30武汉飞上海的出差(1人):①订当天最便宜的还有票航班(1人);如果最便宜的票价有并列,任选其中一班订一个即可;②再订上海最便宜的还有房酒店,2026-10-30入住,2晚,1间。哪一步办不成,就如实告诉我哪部分成功了、哪部分失败了以及失败原因,不要编造结果。"
+tools: [search_flights, book_flight, search_hotels, book_room, calculate, get_weather]
+max_turns: 12
+faults:
+  - tool: search_flights
+    mode: fail_n_times
+    fail_times: 2
+    error: {code: SERVER_ERROR, message: "flight search service internal error, please retry"}
+  - tool: book_room
+    mode: always
+    error: {code: SERVICE_UNAVAILABLE, message: "hotel booking gateway is down for maintenance"}
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "上海"}
+        date: {equals: "2026-10-30"}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0023", "FL0024"]}
+    - tool: search_hotels
+      args:
+        city: {equals: "上海"}
+  expect_recovery: true
+  final_answer:
+    must_include: ["BK7001", "520"]
+    must_not_include: ["RS7", "BK7002", "酒店已订", "酒店预订成功", "已为您预订酒店", "成功预订了酒店"]

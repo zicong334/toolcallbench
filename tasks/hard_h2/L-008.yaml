@@ -1,0 +1,15 @@
+id: L-008
+domain: ledger
+lang: zh
+difficulty: hard
+instruction: "拉一下账户ACC001在2026年10月的全部交易,按类别汇总支出,找出支出最高的两个类别。然后报告:这两个类别的名称、各自的金额、两者合计金额、当月总支出,以及两者合计占当月总支出的百分比(百分比保留1位小数,金额精确到分)。"
+tools: [get_transactions, calculate, search_products, get_forecast]
+max_turns: 12
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+  final_answer:
+    must_include: ["居住", "购物", "4524.78", "1711.96", "6236.74", "7981.11", "78.1"]
+    must_not_include: ["71.4", "36.1"]

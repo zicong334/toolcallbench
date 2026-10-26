@@ -1,0 +1,65 @@
+id: W-011
+domain: weather
+lang: en
+difficulty: hard
+instruction: "Weekly rain audit for the six Hubei cities in the sandbox: 武汉, 宜昌, 襄阳, 荆州, 黄冈, 十堰. Using the weather data for the 7 days from 2026-10-27 through 2026-11-02, find every (city, date) pair with precipitation of at least 15.0 mm (precip_mm >= 15.0). You must cover all 7 days for every one of the six cities. Ignore condition labels like 小雨/中雨 - only the precip_mm number counts. Report: (a) every qualifying pair as city, date (YYYY-MM-DD) and precip_mm exactly as in the data (one decimal), sorted by precip_mm from highest to lowest; (b) the number of qualifying pairs; (c) the sum of precip_mm over all qualifying pairs, rounded to one decimal."
+tools: [get_weather, get_forecast, calculate, list_events]
+max_turns: 12
+grading:
+  required_calls:
+    - any_of:
+        - tool: get_forecast
+          args:
+            city: {equals: "武汉"}
+            days: {in_set: [7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 30]}
+        - tool: get_weather
+          args:
+            city: {equals: "武汉"}
+            date: {equals: "2026-11-02"}
+    - any_of:
+        - tool: get_forecast
+          args:
+            city: {equals: "宜昌"}
+            days: {in_set: [7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 30]}
+        - tool: get_weather
+          args:
+            city: {equals: "宜昌"}
+            date: {equals: "2026-11-02"}
+    - any_of:
+        - tool: get_forecast
+          args:
+            city: {equals: "襄阳"}
+            days: {in_set: [7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 30]}
+        - tool: get_weather
+          args:
+            city: {equals: "襄阳"}
+            date: {equals: "2026-11-02"}
+    - any_of:
+        - tool: get_forecast
+          args:
+            city: {equals: "荆州"}
+            days: {in_set: [7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 30]}
+        - tool: get_weather
+          args:
+            city: {equals: "荆州"}
+            date: {equals: "2026-11-02"}
+    - any_of:
+        - tool: get_forecast
+          args:
+            city: {equals: "黄冈"}
+            days: {in_set: [7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 30]}
+        - tool: get_weather
+          args:
+            city: {equals: "黄冈"}
+            date: {equals: "2026-11-02"}
+    - any_of:
+        - tool: get_forecast
+          args:
+            city: {equals: "十堰"}
+            days: {in_set: [7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 30]}
+        - tool: get_weather
+          args:
+            city: {equals: "十堰"}
+            date: {equals: "2026-11-02"}
+  final_answer:
+    must_include: ["23.9", "22.1", "20.9", "18.1", "17.7", "16.2", "15.5", "15.1", "149.5"]

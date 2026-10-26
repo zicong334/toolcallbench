@@ -1,0 +1,76 @@
+id: F-013
+domain: fault
+lang: en
+difficulty: hard
+instruction: "Book a team trip to Beijing (北京) for 3 people, departing from Wuhan (武汉). Flight: book the cheapest Wuhan→Beijing flight on 2026-10-28 that has at least 3 seats left, for all 3 passengers. Hotel: book the cheapest Beijing hotel that still has rooms - 2 rooms, checking in on 2026-10-28 for 4 nights. Note that the booking services enforce their own per-booking limits: if a booking is rejected because of such a limit, adapt your bookings so that in the end all 3 people are on the flight and the 2 rooms are held for the full 4 nights. When everything is booked, report: the ticket unit price, the total flight cost for all 3 passengers, the hotel price per night, the total hotel cost (2 rooms x 4 nights), and the grand total (flights + hotel), in CNY with two decimal places."
+tools: [search_flights, book_flight, search_hotels, book_room, calculate, list_events]
+max_turns: 14
+faults:
+  - tool: book_flight
+    mode: invalid_on
+    match_args: {passengers: 3}
+    error: {code: PAX_LIMIT, message: "at most 2 passengers per booking; split larger groups into multiple bookings"}
+  - tool: book_room
+    mode: invalid_on
+    match_args: {nights: 4}
+    error: {code: MAX_NIGHTS, message: "each reservation covers at most 3 nights; split longer stays into multiple reservations"}
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "北京"}
+        date: {equals: "2026-10-28"}
+    - tool: search_hotels
+      args:
+        city: {equals: "北京"}
+    - any_of:
+        - tool: book_flight
+          args:
+            flight_id: {in_set: ["FL0005"]}
+            passengers: {equals: 2}
+        - tool: book_flight
+          args:
+            flight_id: {in_set: ["FL0005"]}
+            passengers: {equals: 1}
+    - any_of:
+        - tool: book_room
+          args:
+            hotel_id: {in_set: ["HT018"]}
+            checkin: {equals: "2026-10-28"}
+            nights: {equals: 3}
+            rooms: {equals: 2}
+        - tool: book_room
+          args:
+            hotel_id: {in_set: ["HT018"]}
+            checkin: {equals: "2026-10-28"}
+            nights: {equals: 2}
+            rooms: {equals: 2}
+        - tool: book_room
+          args:
+            hotel_id: {in_set: ["HT018"]}
+            checkin: {equals: "2026-10-28"}
+            nights: {equals: 1}
+            rooms: {equals: 2}
+        - tool: book_room
+          args:
+            hotel_id: {in_set: ["HT018"]}
+            checkin: {equals: "2026-10-28"}
+            nights: {equals: 3}
+            rooms: {equals: 1}
+        - tool: book_room
+          args:
+            hotel_id: {in_set: ["HT018"]}
+            checkin: {equals: "2026-10-28"}
+            nights: {equals: 2}
+            rooms: {equals: 1}
+        - tool: book_room
+          args:
+            hotel_id: {in_set: ["HT018"]}
+            checkin: {equals: "2026-10-28"}
+            nights: {equals: 1}
+            rooms: {equals: 1}
+  expect_recovery: true
+  final_answer:
+    must_include: ["520", "1560", "239", "1912", "3472"]
+    must_not_include: ["3742", "6032", "2516"]

@@ -1,0 +1,38 @@
+id: T-012
+domain: travel
+lang: zh
+difficulty: hard
+instruction: "我和同事一行2人要从武汉去北京出差,请把三笔预订都办妥:①去程:2026-10-29武汉飞北京,只考虑18:00之前起飞且余票不少于2张的航班,订其中最便宜的一班(2人);②返程:2026-10-31北京飞武汉,在余票不少于2张的航班里订最便宜的一班(2人);③住宿:订北京还有房的最便宜酒店,2026-10-29入住,2晚,1间。全部订好后,报告每一项的金额(去程机票2人合计、返程机票2人合计、酒店2晚合计)以及三项的总价,金额以元为单位、保留两位小数。"
+tools: [search_flights, book_flight, search_hotels, book_room, calculate, get_weather]
+max_turns: 12
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "北京"}
+        date: {equals: "2026-10-29"}
+    - tool: search_flights
+      args:
+        origin: {equals: "北京"}
+        dest: {equals: "武汉"}
+        date: {equals: "2026-10-31"}
+    - tool: search_hotels
+      args:
+        city: {equals: "北京"}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0009"]}
+        passengers: {equals: 2}
+    - tool: book_flight
+      args:
+        flight_id: {in_set: ["FL0050"]}
+        passengers: {equals: 2}
+    - tool: book_room
+      args:
+        hotel_id: {in_set: ["HT018"]}
+        checkin: {equals: "2026-10-29"}
+        nights: {equals: 2}
+  final_answer:
+    must_include: ["1040", "900", "478", "2418"]
+    must_not_include: ["2278", "1448", "2738", "2798"]

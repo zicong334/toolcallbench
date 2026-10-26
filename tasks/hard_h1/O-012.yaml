@@ -1,0 +1,31 @@
+id: O-012
+domain: orders
+lang: zh
+difficulty: hard
+instruction: "帮我处理一次采购,共三件事:1) 在「家居」分类里,找出有库存(in_stock为true)的商品中单价最高的一种,买1件,送到公司(地址ID:A2);2) 在「办公用品」分类里,找出有库存的商品中单价最低的一种,买3件,送到家(地址ID:A1);3) 我有两笔旧订单O5001和O5002,把还能取消的都取消掉;取消不了的,告诉我订单号和不能取消的原因。最后汇报:每笔新订单买的是哪个商品(商品ID)、订单号和金额;两笔新订单的合计金额(保留两位小数);以及两笔旧订单各自的处理结果。"
+tools: [search_products, get_product, place_order, cancel_order, calculate, get_transactions]
+max_turns: 12
+grading:
+  required_calls:
+    - tool: search_products
+      args:
+        category: {equals: "家居"}
+    - tool: search_products
+      args:
+        category: {equals: "办公用品"}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1013"}
+        quantity: {equals: 1}
+        address_id: {equals: "A2"}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1008"}
+        quantity: {equals: 3}
+        address_id: {equals: "A1"}
+    - tool: cancel_order
+      args:
+        order_id: {equals: "O5002"}
+  final_answer:
+    must_include: ["O6001", "O6002", "P1013", "P1008", "29.7", "128.7", "O5001", "O5002"]
+    must_not_include: ["O5001已取消", "已取消O5001", "成功取消O5001", "O5001取消成功", "取消了O5001", "O5002无法取消", "O5002不能取消"]

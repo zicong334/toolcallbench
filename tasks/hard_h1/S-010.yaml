@@ -1,0 +1,31 @@
+id: S-010
+domain: schedule
+lang: zh
+difficulty: hard
+instruction: "帮我调整日程。规则:所有新事件必须完全落在工作时间09:00-18:00之内,开始时间必须是整点或半点,且不能与当天任何已有事件重叠。步骤:1) 先列出2026-10-28(周三)的所有事件,并把它们全部取消;2) 取消之后,在2026-10-28尽早安排一个90分钟、标题为「项目评审会」的事件;3) 列出2026-10-30(周五)的所有事件:如果当天09:00-18:00内存在能放下连续120分钟的空档,就在最早可行的开始时间安排一个120分钟、标题为「客户演示」的事件;如果没有这样的空档,就不要安排,并说明原因;4) 最后汇报:被取消的事件ID;每个新建事件的ID、日期和开始时间(日期用YYYY-MM-DD、时间用HH:MM格式);以及2026-10-30的处理结果。"
+tools: [list_events, create_event, cancel_event, get_weather, get_forecast]
+max_turns: 12
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-28"}
+    - tool: cancel_event
+      args:
+        event_id: {equals: "E102"}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-28"}
+        start_time: {equals: "09:00"}
+        duration_min: {equals: 90}
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-30"}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-30"}
+        start_time: {equals: "10:00"}
+        duration_min: {equals: 120}
+  final_answer:
+    must_include: ["E102", "E901", "E902", "2026-10-28", "2026-10-30", "09:00", "10:00"]
+    must_not_include: ["E104已取消", "已取消E104", "取消了E104"]

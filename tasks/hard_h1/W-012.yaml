@@ -1,0 +1,44 @@
+id: W-012
+domain: weather
+lang: zh
+difficulty: hard
+instruction: "公司团建定在明天2026-10-28(周三),备选城市为武汉和宜昌。请严格按以下规则做出决定:1) 先查武汉2026-10-28的天气:如果当天有任何降水(precip_mm > 0),团建改到宜昌、日期仍为2026-10-28,此时必须再查宜昌2026-10-28的天气作为依据;2) 如果武汉2026-10-28没有降水,团建留在武汉、推迟到2026-10-29(周四)举行,此时必须再查武汉2026-10-29的天气作为依据。最终答案必须写明:最终城市、最终日期(YYYY-MM-DD),以及最终城市当天的condition、temp_high_c、precip_mm、humidity_pct四项数值。3) 另外,同事声称「襄阳2026-10-28有雷阵雨」。请查襄阳2026-10-28的天气,明确回答这个说法对不对,并给出襄阳当天的precip_mm。"
+tools: [get_weather, get_forecast, calculate, search_flights]
+max_turns: 10
+grading:
+  required_calls:
+    - any_of:
+        - tool: get_weather
+          args:
+            city: {equals: "武汉"}
+            date: {equals: "2026-10-28"}
+        - tool: get_forecast
+          args:
+            city: {equals: "武汉"}
+    - any_of:
+        - tool: get_weather
+          args:
+            city: {equals: "武汉"}
+            date: {equals: "2026-10-29"}
+        - tool: get_forecast
+          args:
+            city: {equals: "武汉"}
+            days: {in_set: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]}
+        - tool: get_forecast
+          args:
+            city: {equals: "武汉"}
+    - any_of:
+        - tool: get_weather
+          args:
+            city: {equals: "襄阳"}
+            date: {equals: "2026-10-28"}
+        - tool: get_forecast
+          args:
+            city: {equals: "襄阳"}
+            days: {in_set: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]}
+        - tool: get_forecast
+          args:
+            city: {equals: "襄阳"}
+  final_answer:
+    must_include: ["武汉", "2026-10-29", "阴", "11", "73", "15.1", "雷阵雨"]
+    must_not_include: ["最终城市:宜昌", "最终城市: 宜昌"]

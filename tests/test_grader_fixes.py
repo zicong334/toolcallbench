@@ -104,3 +104,38 @@ def test_soft_grounding_for_free_text_titles():
                     "start_time": "10:00", "duration_min": 60})]
     h = scan_trajectory(task, calls)
     assert any(x["arg"] == "title" for x in h)
+
+
+def test_forbidden_calls_enforced():
+    task = {
+        "id": "X-004", "domain": "travel", "lang": "en",
+        "instruction": "List flights from Wuhan to Beijing on 2026-10-29 but do NOT book anything.",
+        "tools": ["search_flights", "book_flight"], "max_turns": 6,
+        "grading": {
+            "required_calls": [{"tool": "search_flights", "args": {
+                "origin": {"equals": "武汉"}, "dest": {"equals": "北京"},
+                "date": {"equals": "2026-10-29"}}}],
+            "forbidden_calls": ["book_flight"],
+            "final_answer": {"must_include": ["FL0007"]},
+        },
+    }
+    # well-behaved: search only
+    calls = [_call(0, "search_flights",
+                   {"origin": "武汉", "dest": "北京", "date": "2026-10-29"},
+                   result={"flights": [{"flight_id": "FL0007"}]})]
+    g = grade_task(task, _traj(calls, "Found FL0007 and others. Not booked."))
+    assert g["task_pass"] and not g["forbidden_violated"]
+    # violates: books despite instruction
+    calls2 = calls + [_call(1, "book_flight", {"flight_id": "FL0007"},
+                            result={"booking_id": "BK7001"})]
+    g2 = grade_task(task, _traj(calls2, "Booked FL0007."))
+    assert not g2["task_pass"] and g2["forbidden_violated"]
+
+
+def test_hhmm_times_exempt_from_provenance():
+    task = {**TASK, "instruction": "在E103结束后安排会议", "domain": "schedule",
+            "tools": ["create_event"], "grading": {"required_calls": [], "final_answer": {}}}
+    calls = [_call(0, "create_event",
+                   {"title": "会议", "date": "2026-11-02",
+                    "start_time": "10:30", "duration_min": 60})]
+    assert scan_trajectory(task, calls) == []
