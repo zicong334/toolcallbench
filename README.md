@@ -1,5 +1,7 @@
 # ToolCallBench-CN
 
+**中文** | [English](README_en.md)
+
 **双语 LLM 函数调用可靠性基准** — Bilingual benchmark for LLM function-calling reliability.
 
 59 个确定性沙盒任务,四大指标全部**规则判分、零 LLM 裁判**:
