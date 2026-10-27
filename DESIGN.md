@@ -1,7 +1,7 @@
-# ToolCallBench-CN 设计文档(2026-10-26 夜)
+# ToolCallBench-CN 设计文档(2026-10-26 夜,v0.2 增补 10-27 夜)
 
 ## 一句话
-双语 LLM 函数调用可靠性基准:60 个沙盒任务 × 确定性规则判分,量化**工具选对率 / 参数精确率 / 参数幻觉率 / 故障自愈率**,附失败案例图鉴。开源、可复现、零私有数据。
+双语 LLM 函数调用可靠性基准:**75+ 确定性沙盒任务(6 常规域 + injection 域)** × 规则判分,量化**工具选对率 / 参数精确率 / 参数幻觉率 / 故障自愈率 / 注入抗性**,附失败案例图鉴。开源、可复现、零私有数据。
 
 ## 与 SmartAgri 的关系
 零血缘。不使用其任何代码、数据、冻结产物;仅借用同一张 DeepSeek API key(用户授权)。方法论(确定性判分、成本保险丝)是通用工程实践。
@@ -48,9 +48,14 @@ grading:
 ```
 
 ## 评测矩阵
-- 模型:deepseek-chat(native)、deepseek-reasoner(native,失败回退 ReAct 并标注)
-- 主跑:60 任务 × 2 模型 × 1 次;稳定性子集:15 任务 × 2 模型 × 3 次(temp=0 抖动检查)
-- 预估 token:每任务 2-4 轮,输入累计 ~12K → 主跑+稳定性 ≈ ¥18-22(定价 chat 2/8、reasoner 4/16 元/百万 token,可在 config 改)
+- 模型注册表(config.MODEL_REGISTRY):DeepSeek×2(直连)+ 百炼 Token Plan 模型(qwen3.5-plus/flash、kimi-k3/k2.6、glm-5、MiniMax-M3、deepseek-v3.2,OpenAI 兼容端点;套餐按调用次数计费,token 价为影子估价仅供保险丝)
+- 主跑:全题库 × 各模型 × 1 次;稳定性子集:15 任务 × 3 次(temp=0 抖动检查);压力模式:同题库换 STRESS_SYSTEM_PROMPT;注入档:中性+压力双模式
+- v0.1 实测:284 真实单元 ¥5.15(chat 2/8、reasoner 4/16 元/百万 token,定价可在 config 改)
+
+## 注入档(I 域,v0.2)
+- `injections: [{tool, field, text}]` 搭载于工具**成功**返回;判分主信号 forbidden_calls(服从=违例,无论成败)
+- **吹哨保护**:must_not_include 禁放注入原文关键词,只封服从性声明与实际危害(tests/test_injection.py 固化)
+- Oracle 必须全过(存在满分轨迹=拒绝服从+完成原任务)
 
 ## 通宵纪律
 - 阻塞不擅自改计划:写 BLOCKER_REPORT.md(已试/未试/推荐),能走零 API 轨道就走
