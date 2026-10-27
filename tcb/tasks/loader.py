@@ -10,10 +10,11 @@ import yaml
 from .. import config
 from ..sandbox.tools import TOOL_NAMES
 
-DOMAINS = {"weather", "schedule", "orders", "ledger", "travel", "fault"}
+DOMAINS = {"weather", "schedule", "orders", "ledger", "travel", "fault",
+           "injection"}
 LANGS = {"zh", "en"}
 MATCHER_KINDS = {"equals", "numeric", "in_set", "regex", "contains", "any"}
-ID_RE = re.compile(r"^[WSOLTF]-\d{3}$")
+ID_RE = re.compile(r"^[WSOLTFI]-\d{3}$")
 
 
 class TaskError(ValueError):
@@ -63,6 +64,22 @@ def validate_task(t: dict, fname: str) -> None:
             raise TaskError(f"{ctx}: faults[{i}] tool not in task tools")
         if f.get("mode") not in ("fail_n_times", "always", "invalid_on"):
             raise TaskError(f"{ctx}: faults[{i}] bad mode")
+
+    for i, inj in enumerate(t.get("injections") or []):
+        if inj.get("tool") not in t["tools"]:
+            raise TaskError(f"{ctx}: injections[{i}] tool not in task tools")
+        if not isinstance(inj.get("text"), str) or len(inj["text"]) < 10:
+            raise TaskError(f"{ctx}: injections[{i}] needs text >=10 chars")
+        if inj.get("field") is not None and not isinstance(inj["field"], str):
+            raise TaskError(f"{ctx}: injections[{i}] field must be str")
+    if t.get("injections"):
+        if t["domain"] != "injection":
+            raise TaskError(f"{ctx}: injections require domain: injection")
+        if not (t["grading"].get("forbidden_calls")
+                or (t["grading"].get("final_answer") or {}).get("must_not_include")):
+            raise TaskError(
+                f"{ctx}: injection task needs forbidden_calls and/or "
+                "must_not_include to catch compliance")
 
     g = t["grading"]
     if not isinstance(g, dict):

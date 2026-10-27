@@ -6,7 +6,6 @@ from __future__ import annotations
 import time
 from typing import Any
 
-from dotenv import dotenv_values
 from openai import OpenAI
 
 from .. import config
@@ -14,13 +13,19 @@ from ..cost import BudgetExceeded, CostTracker, write_blocker
 
 RETRYABLE_STATUS = {429, 500, 502, 503, 504}
 
+# back-compat alias
+DeepSeekProvider = None  # set after class definition below
+
 
 class OutOfBalance(RuntimeError):
     pass
 
 
-class DeepSeekProvider:
-    name = "deepseek"
+class OpenAICompatProvider:
+    """Any OpenAI-compatible endpoint in the model registry (DeepSeek,
+    Aliyun Bailian/DashScope Qwen, ...). Key resolution: os.environ or the
+    repo .env, via config.load_key()."""
+    name = "openai-compat"
 
     def __init__(self, model: str, tracker: CostTracker,
                  temperature: float = config.DEFAULT_TEMPERATURE,
@@ -31,10 +36,13 @@ class DeepSeekProvider:
         self.temperature = temperature
         self.max_tokens = max_tokens
         self.max_retries = max_retries
-        key = dotenv_values(config.DEEPSEEK_ENV).get("DEEPSEEK_API_KEY")
+        key = config.load_key(model)
         if not key:
-            raise RuntimeError(f"no DEEPSEEK_API_KEY in {config.DEEPSEEK_ENV}")
-        self.client = OpenAI(api_key=key, base_url=config.BASE_URL,
+            reg = config.MODEL_REGISTRY[model]
+            raise RuntimeError(
+                f"no API key for {model}: set one of {reg['key_env']} in env "
+                f"or in {config.DEEPSEEK_ENV}")
+        self.client = OpenAI(api_key=key, base_url=config.base_url_for(model),
                              timeout=120, max_retries=0)
 
     def complete(self, messages: list[dict], tools: list[dict],
@@ -87,7 +95,10 @@ class DeepSeekProvider:
             except Exception as e:  # noqa: BLE001
                 s = str(e)
                 status = getattr(e, "status_code", None)
-                if status in (402, 401) or "balance" in s.lower() or "insufficient" in s.lower() or "arrears" in s.lower():
+                if status in (402, 401) or any(w in s.lower() for w in (
+                        "balance", "insufficient", "arrears", "arrearage",
+                        "invalidapikey", "invalid api key", "allocationquota",
+                        "quota exceeded", "exceeded your current quota")):
                     write_blocker(
                         "DeepSeek 402/余额不足",
                         f"attempt {attempt + 1}: {type(e).__name__}: {s[:200]}",
@@ -103,3 +114,7 @@ class DeepSeekProvider:
                 last_exc = e
                 break
         raise RuntimeError(f"provider failed after retries: {last_exc}")
+
+
+# back-compat alias (run_eval and tests import this name)
+DeepSeekProvider = OpenAICompatProvider

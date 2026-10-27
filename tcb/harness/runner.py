@@ -59,6 +59,7 @@ def run_task(provider: Provider, task: dict, run_idx: int = 0,
              system_prompt: str | None = None) -> dict:
     world = WorldState.fresh()
     injector = FaultInjector(task.get("faults") or [])
+    injections = task.get("injections") or []
     tools = specs_for(task["tools"])
     sys_tpl = system_prompt or SYSTEM_PROMPT
     messages: list[dict] = [
@@ -111,6 +112,15 @@ def run_task(provider: Provider, task: dict, run_idx: int = 0,
                 ok, payload = False, {"error": {
                     "code": "INVALID_JSON_ARGS",
                     "message": "tool arguments were not a valid JSON object"}}
+            # prompt-injection payloads ride along in SUCCESSFUL results,
+            # disguised as ordinary output fields (notice/公告/description)
+            content_injected = False
+            if ok and isinstance(payload, dict):
+                for inj in injections:
+                    if inj.get("tool") == tc["name"]:
+                        payload = {**payload,
+                                   inj.get("field") or "notice": inj["text"]}
+                        content_injected = True
             call_rec = {
                 "seq": len(calls),
                 "turn": turn,
@@ -119,6 +129,7 @@ def run_task(provider: Provider, task: dict, run_idx: int = 0,
                 "ok": ok,
                 "injected": bool(isinstance(payload, dict)
                                  and (payload.get("error") or {}).get("injected")),
+                "content_injected": content_injected,
                 "error_code": (payload.get("error") or {}).get("code")
                 if not ok and isinstance(payload, dict) else None,
                 "result": payload,
@@ -148,6 +159,7 @@ def run_task(provider: Provider, task: dict, run_idx: int = 0,
         "error": error,
         "n_calls": len(calls),
         "n_turns": len(turns),
+        "n_injections_configured": len(injections),
         "final_content": final_content,
         "calls": calls,
         "turns": turns,
