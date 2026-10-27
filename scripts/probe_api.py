@@ -2,7 +2,7 @@
 """API probe: verify DeepSeek key works and check function-calling support.
 
 Usage: python scripts/probe_api.py
-Reads key from smartagri-rx/deploy/.env (never printed).
+Reads key via TCB_ENV_FILE (default: <repo>/.env). The key is never printed.
 """
 import json
 import sys
@@ -11,8 +11,11 @@ from pathlib import Path
 from dotenv import dotenv_values
 from openai import OpenAI
 
-ENV_PATH = Path(r"G:\C盘大文件迁移\claude code projects\smartagri-rx\deploy\.env")
-BASE_URL = "https://api.deepseek.com"
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from tcb import config  # noqa: E402
+
+ENV_PATH = config.DEEPSEEK_ENV
+BASE_URL = config.BASE_URL
 
 WEATHER_TOOL = {
     "type": "function",

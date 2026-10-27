@@ -11,7 +11,7 @@
 
 ## 世界数据查询(唯一事实源)
 ```bash
-cd "G:\C盘大文件迁移\claude code projects\toolcallbench-cn"
+cd <repo-root>
 PYTHONIOENCODING=utf-8 .venv/Scripts/python.exe scripts/world_query.py weather 武汉 2026-10-28
 PYTHONIOENCODING=utf-8 .venv/Scripts/python.exe scripts/world_query.py events 2026-10-29
 PYTHONIOENCODING=utf-8 .venv/Scripts/python.exe scripts/world_query.py product 耳机
@@ -38,7 +38,7 @@ PYTHONIOENCODING=utf-8 .venv/Scripts/python.exe scripts/world_query.py order O50
 
 ## 完成后自验(必须全绿才算完工)
 ```bash
-cd "G:\C盘大文件迁移\claude code projects\toolcallbench-cn"
+cd <repo-root>
 PYTHONIOENCODING=utf-8 .venv/Scripts/python.exe scripts/validate_tasks.py tasks/batch_X/
 ```
 再把每题的 must_include 值与 world_query 输出对一遍(在汇报里给出核对表)。

@@ -25,7 +25,7 @@
 .venv/Scripts/python.exe scripts/validate_tasks.py    # 59 题 0 错误
 .venv/Scripts/python.exe scripts/run_eval.py --mock oracle   # 判分器自检 59/59 过
 .venv/Scripts/python.exe scripts/run_eval.py --mock chaos    # 必被全抓 0/59
-# 真实评测需 TCB_ENV_FILE 指向含 DEEPSEEK_API_KEY 的 .env(当前借用 smartagri-rx/deploy/.env)
+# 真实评测需 DEEPSEEK_API_KEY:在仓库根 .env 或 TCB_ENV_FILE 指向的 .env 中配置
 ```
 
 ## 关键设计决定(改动前必读)
@@ -42,7 +42,7 @@
 - [ ] 幻觉溯源对"派生值"仍偏严:HH:MM 时刻已豁免,但其他推理派生值(如计算出的百分比再传参)可能被误标——遇到时按 test_grader_fixes.py 模式加豁免+回归测试
 - [ ] W-007 语言契约翻转是抖动型:压力稳定性建议全题库 ×3 复跑再下结论
 - [ ] HuggingFace Datasets 发布 + leaderboard 提交通道
-- [ ] 开源发布前:README/HANDOVER 里 smartagri-rx/deploy/.env 的本机路径改成占位说明(别暴露私人路径)
+- [x] ~~开源发布前清理本机 .env 路径引用~~ 已清理(2026-10-27 推送前):默认读仓库根 .env,文档占位化
 - [ ] forbidden_calls 已入判分(v0.1 收尾补上);出题时仍优先用 must_not_include 封堵措辞
 
 ## 通宵执行记录

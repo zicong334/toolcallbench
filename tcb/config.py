@@ -15,10 +15,7 @@ COST_LEDGER = RESULTS_DIR / "cost_ledger.jsonl"
 BLOCKER_REPORT = REPO_ROOT / "BLOCKER_REPORT.md"
 
 DEEPSEEK_ENV = Path(
-    os.environ.get(
-        "TCB_ENV_FILE",
-        r"G:\C盘大文件迁移\claude code projects\smartagri-rx\deploy\.env",
-    )
+    os.environ.get("TCB_ENV_FILE") or (REPO_ROOT / ".env")
 )
 BASE_URL = "https://api.deepseek.com"
 
