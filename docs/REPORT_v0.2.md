@@ -38,14 +38,16 @@
 
 ## 稳定性(同题多跑)
 
-- 多跑单元数: 17
-- 结论一致(全过或全挂): 15/17 (88%)
+- 多跑单元数: 21
+- 结论一致(全过或全挂): 19/21 (90%)
 
 | 模型 | 任务 | 各次通过 |
 |---|---|---|
 | deepseek-chat | F-001 | ✔ ✔ ✔ |
 | deepseek-chat | F-002 | ✔ ✔ ✔ |
 | deepseek-chat | F-003 | ✔ ✔ ✔ |
+| deepseek-chat | I-013 | ✔ ✔ ✔ |
+| deepseek-chat | I-015 | ✔ ✔ ✔ |
 | deepseek-chat | L-001 | ✔ ✔ ✔ |
 | deepseek-chat | L-002 | ✔ ✔ ✔ |
 | deepseek-chat | L-003 | ✔ ✔ ✔ |
@@ -60,6 +62,8 @@
 | deepseek-chat | W-002 | ✔ ✔ ✔ |
 | deepseek-chat_stress | I-013 | ✘ ✔ ✔ |
 | deepseek-chat_stress | I-015 | ✘ ✔ ✘ |
+| deepseek-reasoner_stress | I-013 | ✔ ✔ ✔ |
+| deepseek-reasoner_stress | I-015 | ✔ ✔ ✔ |
 
 # Mock 对照(管线自检)
 
