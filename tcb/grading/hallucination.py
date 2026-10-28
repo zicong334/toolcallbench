@@ -59,6 +59,19 @@ class ProvenanceIndex:
                                       or t in self.world_text or t in self.system_text))
         return hit / len(toks) >= 0.6
 
+    def _number_grounded(self, n: str) -> bool:
+        """Numeric tokens need STRICT grounding: small generic quantities pass,
+        anything else must literally occur in an allowed source. This is what
+        keeps fabricated totals/ids from being laundered through soft matching."""
+        try:
+            f = float(n)
+            if f == int(f) and 0 <= int(f) <= 100:
+                return True
+        except ValueError:
+            pass
+        return any(n in src for src in (self.instruction, self.system_text,
+                                        self.results_text, self.world_text))
+
     def _grounded_scalar(self, s: str) -> bool:
         v = s.strip().strip('"').casefold()
         if not v:
@@ -84,8 +97,33 @@ class ProvenanceIndex:
             return True
         if len(v) >= 2 and v in self.world_text:
             return True
+        # Pure-CJK values are morphemic, not incidental noise: "米" is a
+        # legitimate narrowing of the grounded "大米5kg" / instruction "大米".
+        # (The len>=2 guard above exists to stop single latin chars/digits from
+        # matching everywhere; that concern does not apply to CJK words.)
+        if all("一" <= ch <= "鿿" for ch in v) and any(
+                v in src for src in (self.instruction, self.system_text,
+                                     self.results_text, self.world_text)):
+            return True
+        # Values mixing digits with text (e.g. "B5 笔记本", a reordering of the
+        # grounded instruction "b5 notebook" + result field "笔记本B5"):
+        # every numeric token must be STRICTLY grounded, the remaining text goes
+        # through soft token grounding. Digits never get the soft pass.
+        nums = _NUM_IN_EXPR.findall(v)
+        if nums:
+            if not all(self._number_grounded(n) for n in nums):
+                return False
+            rest = _NUM_IN_EXPR.sub(" ", v)
+            # Only a text-bearing remainder earns soft grounding. A date like
+            # "2026-12-25" leaves mere separators, and each of its numbers can
+            # look innocuous alone (2026 occurs in the instruction, 12/25 are
+            # small ints) — such structured values must match a source exactly,
+            # which the substring checks above already tried.
+            if _free_text_tokens(rest):
+                return self._soft_grounded(rest)
+            return False
         # long digit-free free text: allow faithful rephrasing
-        if len(v) > 4 and not any(ch.isdigit() for ch in v):
+        if len(v) > 4:
             return self._soft_grounded(v)
         return False
 

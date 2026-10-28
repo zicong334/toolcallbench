@@ -94,6 +94,26 @@ MODEL_REGISTRY = {
         "pricing": {"input": 2.0, "output": 8.0},
     },
     "mock": {"base_url": "", "key_env": (), "pricing": {"input": 0.0, "output": 0.0}},
+    # --- Local Ollama (zero cost, no account, CPU inference).
+    # Lets anyone reproduce a leaderboard tier without any API key.
+    "ollama-qwen2.5-7b-instruct": {
+        "base_url": "http://localhost:11434/v1",
+        "api_model": "qwen2.5:7b-instruct",
+        "key_env": (), "key_literal": "ollama",
+        "pricing": {"input": 0.0, "output": 0.0},
+    },
+    "ollama-llama3.1-8b-instruct": {
+        "base_url": "http://localhost:11434/v1",
+        "api_model": "llama3.1:8b-instruct",
+        "key_env": (), "key_literal": "ollama",
+        "pricing": {"input": 0.0, "output": 0.0},
+    },
+    "ollama-qwen2.5-14b-instruct": {
+        "base_url": "http://localhost:11434/v1",
+        "api_model": "qwen2.5:14b-instruct",
+        "key_env": (), "key_literal": "ollama",
+        "pricing": {"input": 0.0, "output": 0.0},
+    },
 }
 
 # Back-compat: PRICING derived from registry
@@ -103,11 +123,17 @@ MODELS = ["deepseek-chat", "deepseek-reasoner"]
 
 
 def load_key(model: str) -> str | None:
-    """Resolve API key for a registry model from env or the repo .env file."""
+    """Resolve API key for a registry model.
+
+    Order: literal key in the registry (local endpoints that ignore auth),
+    then each name in key_env looked up in os.environ and the repo .env.
+    """
     from dotenv import dotenv_values
     reg = MODEL_REGISTRY.get(model)
     if not reg:
         raise KeyError(f"model {model!r} not in MODEL_REGISTRY")
+    if reg.get("key_literal"):
+        return reg["key_literal"]
     file_cfg = dotenv_values(DEEPSEEK_ENV) if DEEPSEEK_ENV.exists() else {}
     for name in reg["key_env"]:
         val = os.environ.get(name) or file_cfg.get(name)

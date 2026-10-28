@@ -31,6 +31,9 @@ class OpenAICompatProvider:
                  temperature: float = config.DEFAULT_TEMPERATURE,
                  max_tokens: int = 1500, max_retries: int = 4):
         self.model = model
+        # wire id may differ from the registry key (keys double as directory
+        # names, so they must stay filesystem-safe; "qwen2.5:7b-instruct" is not)
+        self.api_model = config.MODEL_REGISTRY[model].get("api_model", model)
         self.name = model  # trajectory folders are keyed by provider name
         self.tracker = tracker
         self.temperature = temperature
@@ -55,7 +58,7 @@ class OpenAICompatProvider:
         for attempt in range(self.max_retries):
             try:
                 resp = self.client.chat.completions.create(
-                    model=self.model,
+                    model=self.api_model,
                     messages=messages,
                     tools=tools or None,
                     temperature=self.temperature,

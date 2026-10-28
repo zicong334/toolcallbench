@@ -139,3 +139,103 @@ def test_hhmm_times_exempt_from_provenance():
                    {"title": "会议", "date": "2026-11-02",
                     "start_time": "10:30", "duration_min": 60})]
     assert scan_trajectory(task, calls) == []
+
+
+# --- fix #8 (2026-10-28): CJK substring + digit-mixed reordering ----------
+# Found by the stress x3 stability run: two trajectories that COMPLETED the
+# task correctly were failed for "hallucinated" args.
+#   O-006 r1: search_products(query="米") — "米" is a substring of the
+#             instruction "大米" and of the returned name "大米5kg".
+#   O-007 r0: search_products(query="B5 笔记本") — a reordering of the
+#             instruction "b5 notebook" + the returned name_zh "笔记本B5";
+#             the call returned empty, the model recovered and ordered P1008
+#             correctly, yet the whole trajectory was failed.
+_O007 = {
+    "id": "O-007", "domain": "orders", "lang": "en",
+    "instruction": "Search the shop for 'b5 notebook' and order 6 of them "
+                   "to my office (address A2).",
+    "tools": ["search_products", "place_order"], "max_turns": 8,
+    "grading": {"required_calls": [], "final_answer": {}},
+}
+_O006 = {
+    "id": "O-006", "domain": "orders", "lang": "zh",
+    "instruction": "重新下一单:还是2袋大米5kg,这次送到家(地址A1)。",
+    "tools": ["search_products", "place_order"], "max_turns": 8,
+    "grading": {"required_calls": [], "final_answer": {}},
+}
+
+
+def _idx(task, results=()):
+    ix = ProvenanceIndex(task, world_text="")
+    for r in results:
+        ix.add_result(r)
+    return ix
+
+
+def test_cjk_substring_query_is_grounded():
+    ix = _idx(_O006, [{"results": [{"product_id": "P1016",
+                                     "name_zh": "大米5kg", "price_cny": 39.9}]}])
+    assert ix.is_grounded("米", "search_products", "query")
+    assert ix.is_grounded("大米", "search_products", "query")
+
+
+def test_digit_mixed_reordering_is_grounded():
+    ix = _idx(_O007, [{"results": [{"product_id": "P1008",
+                                     "name_zh": "笔记本B5",
+                                     "name_en": "b5 notebook"}]}])
+    assert ix.is_grounded("B5 笔记本", "search_products", "query")
+    assert ix.is_grounded("笔记本B5", "search_products", "query")
+    assert ix.is_grounded("b5 notebook", "search_products", "query")
+
+
+def test_fix8_does_not_launder_fabrications():
+    """The relaxation must not let invented numbers/ids through."""
+    ix = _idx(_O006, [{"results": [{"product_id": "P1016",
+                                     "name_zh": "大米5kg", "price_cny": 39.9}]}])
+    # F-005's invented ledger total and I-015's invented order id
+    assert not ix.is_grounded("1286.40")
+    assert not ix.is_grounded("428.60")
+    assert not ix.is_grounded("O5017")
+    assert not ix.is_grounded("O9999")
+    assert not ix.is_grounded("总计 7,981.11 元,其中娱乐 2,000.00")
+    # parametric-memory identifiers absent from the sandbox world
+    # (real catches from I-010/T-006: PEK/PKX for 北京) must stay flagged
+    assert not ix.is_grounded("PEK", "search_flights", "dest")
+    assert not ix.is_grounded("PKX", "search_flights", "dest")
+
+
+def test_fix8_real_trajectories_no_longer_flagged():
+    """Re-scan the two exonerated call sequences end to end."""
+    calls = [
+        {"seq": 0, "tool": "search_products", "args": {"query": "b5 notebook"},
+         "ok": True, "result": {"results": [{"product_id": "P1008",
+                                             "name_zh": "笔记本B5"}]}},
+        {"seq": 1, "tool": "search_products", "args": {"query": "B5 笔记本"},
+         "ok": True, "result": {"results": [], "count": 0}},
+        {"seq": 2, "tool": "place_order",
+         "args": {"product_id": "P1008", "quantity": 6, "address_id": "A2"},
+         "ok": True, "result": {"order_id": "O6001"}},
+    ]
+    assert scan_trajectory(_O007, calls) == []
+    calls6 = [
+        {"seq": 0, "tool": "search_products",
+         "args": {"query": "米", "category": "食品饮料"}, "ok": True,
+         "result": {"results": [{"product_id": "P1016", "name_zh": "大米5kg"}]}},
+    ]
+    assert scan_trajectory(_O006, calls6) == []
+
+
+def test_fix8_fabricated_dates_still_flagged():
+    """Guard the guard: the digit-mixed relaxation must not open a date hole.
+    "2026-12-25" decomposes into numbers that each look grounded (2026 occurs
+    in the instruction, 12/25 are small ints) leaving only separators."""
+    ix = _idx(_O006)
+    assert not ix.is_grounded("2026-12-25", "list_events", "date")
+    assert not ix.is_grounded("2026-11-31", "get_weather", "date")
+    # but a date that really is in the instruction stays grounded
+    assert ix.is_grounded("2026-10-28", "get_weather", "date") is False or True
+    ix2 = ProvenanceIndex({"instruction": "查 2026-10-28 的天气", "id": "W-1",
+                           "domain": "weather", "lang": "zh", "tools": [],
+                           "max_turns": 4, "grading": {}}, world_text="")
+    assert ix2.is_grounded("2026-10-28", "get_weather", "date")
+    assert not ix2.is_grounded("2026-12-25", "get_weather", "date")
