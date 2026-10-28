@@ -98,18 +98,21 @@ MODEL_REGISTRY = {
     # Lets anyone reproduce a leaderboard tier without any API key.
     "ollama-qwen2.5-7b-instruct": {
         "base_url": "http://localhost:11434/v1",
+        "timeout": 900,
         "api_model": "qwen2.5:7b-instruct",
         "key_env": (), "key_literal": "ollama",
         "pricing": {"input": 0.0, "output": 0.0},
     },
     "ollama-llama3.1-8b-instruct": {
         "base_url": "http://localhost:11434/v1",
+        "timeout": 900,
         "api_model": "llama3.1:8b-instruct",
         "key_env": (), "key_literal": "ollama",
         "pricing": {"input": 0.0, "output": 0.0},
     },
     "ollama-qwen2.5-14b-instruct": {
         "base_url": "http://localhost:11434/v1",
+        "timeout": 900,
         "api_model": "qwen2.5:14b-instruct",
         "key_env": (), "key_literal": "ollama",
         "pricing": {"input": 0.0, "output": 0.0},

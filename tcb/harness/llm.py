@@ -45,8 +45,11 @@ class OpenAICompatProvider:
             raise RuntimeError(
                 f"no API key for {model}: set one of {reg['key_env']} in env "
                 f"or in {config.DEEPSEEK_ENV}")
+        # Local CPU inference is slow (measured ~1.2 tok/s for qwen2.5:7b q4),
+        # so the request timeout is per-model, not a hardcoded 120s.
+        timeout = config.MODEL_REGISTRY[model].get("timeout", 120)
         self.client = OpenAI(api_key=key, base_url=config.base_url_for(model),
-                             timeout=120, max_retries=0)
+                             timeout=timeout, max_retries=0)
 
     def complete(self, messages: list[dict], tools: list[dict],
                  task_id: str = "") -> dict[str, Any]:
