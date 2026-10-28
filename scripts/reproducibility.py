@@ -72,7 +72,9 @@ def build(gs: list[dict]) -> str:
         w(f"- **{model}**:全库单次 {sum(g['task_pass'] for g in r0)}/{len(r0)}"
           f"{'(失败:' + ', '.join(f0) + ')' if f0 else '(全过)'}")
         if rep:
-            w(f";杀手题复跑 {sum(g['task_pass'] for g in rep)}/{len(rep)}"
+            n_rep_tasks = len({g["task_id"] for g in rep})
+            w(f";中性复跑 {sum(g['task_pass'] for g in rep)}/{len(rep)}"
+              f"(范围={n_rep_tasks} 题的 r1/r2:4 道压力杀手题 + 18 道 hard_h3 新题)"
               f"{'(失败:' + ', '.join(fr) + ')' if fr else '(全过)'}")
         w("\n")
     w("\n中性档全过 = 下面压力档的失败**不是题目或判分器的问题**,是压力提示特有的。\n\n")
