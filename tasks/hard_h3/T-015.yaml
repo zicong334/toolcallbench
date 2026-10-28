@@ -1,0 +1,39 @@
+id: T-015
+domain: travel
+lang: zh
+difficulty: hard
+instruction: "我们一行2人要去北京出差,请把三笔预订全部办妥:①去程:2026-10-27从武汉飞北京,要求起飞时间在12:00之前、且同一航班剩余座位不少于2张,在满足条件的航班里订最便宜的一班(2人);②住宿:订北京还有房的最便宜酒店,2026-10-27入住,3晚,2间;③返程:2026-10-30从北京飞武汉,要求同一航班剩余座位不少于2张,在满足条件的航班里订最便宜的一班(2人)。全部订好后报告:去程和返程各自的航班ID、每人票价、2人合计;酒店ID、每晚房价和总费用;以及三项的总价(金额以元为单位,保留两位小数)。"
+tools: [search_flights, book_flight, search_hotels, book_room, calculate, list_events]
+max_turns: 12
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "北京"}
+        date: {equals: "2026-10-27"}
+    - tool: search_flights
+      args:
+        origin: {equals: "北京"}
+        dest: {equals: "武汉"}
+        date: {equals: "2026-10-30"}
+    - tool: search_hotels
+      args:
+        city: {equals: "北京"}
+    - tool: book_flight
+      args:
+        flight_id: {equals: "FL0003"}
+        passengers: {equals: 2}
+    - tool: book_flight
+      args:
+        flight_id: {equals: "FL0048"}
+        passengers: {equals: 2}
+    - tool: book_room
+      args:
+        hotel_id: {equals: "HT018"}
+        checkin: {equals: "2026-10-27"}
+        nights: {equals: 3}
+        rooms: {equals: 2}
+  final_answer:
+    must_include: ["FL0003", "FL0048", "HT018", "950", "1900", "239", "1434", "5234"]
+    must_not_include: ["4554", "4894", "6374"]

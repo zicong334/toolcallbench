@@ -1,0 +1,37 @@
+id: S-014
+domain: schedule
+lang: zh
+difficulty: hard
+instruction: "我要安排一个120分钟、标题为「户外团建」的活动,规则如下:①日期必须是2026-10-27至2026-11-01(含两端)之间,武汉当天无降水(precip_mm等于0,只看数值不看天气标签)的最早一天;②活动必须完全落在选定日期的12:00-18:00之间,开始时间为整点或半点,且不与当天任何已有事件重叠;③开始时间必须晚于当天「导师面谈」事件的结束时间。请先查天气确定日期,再列出当天已有事件,然后创建活动。另外,同事声称「武汉2026-10-30不会下雨」,请查证并明确回答这个说法对不对,给出当天的condition和precip_mm。最后报告:选定日期(YYYY-MM-DD);新事件的ID和开始时间(HH:MM);选定日期12:00-18:00内在新事件安排完之后还剩多少空闲分钟(要扣除当天已有事件占用的时间);以及2026-10-30的查证结果。"
+tools: [get_weather, get_forecast, list_events, create_event, cancel_event]
+max_turns: 12
+grading:
+  required_calls:
+    - any_of:
+        - tool: get_weather
+          args:
+            city: {equals: "武汉"}
+            date: {equals: "2026-10-28"}
+        - tool: get_forecast
+          args:
+            city: {equals: "武汉"}
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-28"}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-28"}
+        start_time: {equals: "15:30"}
+        duration_min: {equals: 120}
+    - any_of:
+        - tool: get_weather
+          args:
+            city: {equals: "武汉"}
+            date: {equals: "2026-10-30"}
+        - tool: get_forecast
+          args:
+            city: {equals: "武汉"}
+            days: {in_set: [4, 5, 6, 7]}
+  final_answer:
+    must_include: ["2026-10-28", "15:30", "E901", "195", "22.1", "小雨"]
+    must_not_include: []

@@ -1,0 +1,34 @@
+id: F-015
+domain: fault
+lang: en
+difficulty: hard
+instruction: "Book a solo business trip from Wuhan (武汉) to Beijing (北京). Flight: on 2026-10-29, among the flights departing before 18:00 that still have at least 1 seat left, book the cheapest one for 1 passenger. Hotel: book the cheapest Beijing hotel that still has rooms - 1 room, check-in 2026-10-29, 2 nights. Warning: the hotel payment gateway has been flaky lately - if a booking call fails with a gateway error, RETRY it instead of giving up, and never claim a booking succeeded without a confirmed tool result. When done, report: the flight id and total ticket cost, the hotel id, its price per night and the total hotel cost, and the grand total (CNY, two decimal places). If something truly cannot be booked even after retrying, say so honestly."
+tools: [search_flights, book_flight, search_hotels, book_room, calculate, get_weather]
+max_turns: 12
+faults:
+  - tool: book_room
+    mode: fail_n_times
+    fail_times: 1
+    error: {code: GATEWAY_TIMEOUT, message: "payment gateway timed out, please retry"}
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "北京"}
+        date: {equals: "2026-10-29"}
+    - tool: book_flight
+      args:
+        flight_id: {equals: "FL0009"}
+    - tool: search_hotels
+      args:
+        city: {equals: "北京"}
+    - tool: book_room
+      args:
+        hotel_id: {equals: "HT018"}
+        checkin: {equals: "2026-10-29"}
+        nights: {equals: 2}
+  expect_recovery: true
+  final_answer:
+    must_include: ["FL0009", "520", "HT018", "239", "478", "998"]
+    must_not_include: ["1378", "928"]

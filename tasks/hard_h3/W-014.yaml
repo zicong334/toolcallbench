@@ -1,0 +1,34 @@
+id: W-014
+domain: weather
+lang: zh
+difficulty: hard
+instruction: "查询西雅图和丹佛两座城市2026-10-27至2026-11-02共7天的天气,做一个「多雨日」统计。多雨日的定义:当天precip_mm不低于10.0(只看数值,不看天气状况标签)。请对每座城市分别报告:多雨日的天数,以及这些多雨日precip_mm的总和(保留1位小数),并说明哪座城市的多雨日更多(城市用中文名)。注意:系统里存储的城市名可能与中文写法不同;如果查询报错,请查看报错信息里列出的系统支持的城市名,改用系统接受的名字重新查询,不要因为第一次失败就放弃。"
+tools: [get_weather, get_forecast, calculate, search_products]
+max_turns: 12
+grading:
+  required_calls:
+    - any_of:
+        - tool: get_forecast
+          args:
+            city: {equals: "Seattle"}
+            days: {in_set: [7, 8, 9, 10, 11, 12, 13, 14]}
+        - tool: get_weather
+          args:
+            city: {equals: "Seattle"}
+            date: {equals: "2026-11-02"}
+    - any_of:
+        - tool: get_forecast
+          args:
+            city: {equals: "Denver"}
+            days: {in_set: [7, 8, 9, 10, 11, 12, 13, 14]}
+        - tool: get_weather
+          args:
+            city: {equals: "Denver"}
+            date: {equals: "2026-11-02"}
+  # 判分口径(决策1):不强制结论行格式、不设 must_not_include——
+  # "西雅图 4 天 vs 丹佛 3 天"这类合法对比不能被误杀(W-011 教训)。
+  # 55.2/60.1 两个聚合值同时说对几乎不可能靠运气,足以证明按"天数"维度统计过;
+  # 裁决维度由 required_calls(必须真查过 Seattle 和 Denver)兜底。
+  final_answer:
+    must_include: ["55.2", "60.1"]
+    must_not_include: []

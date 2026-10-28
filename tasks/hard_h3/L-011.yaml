@@ -1,0 +1,15 @@
+id: L-011
+domain: ledger
+lang: en
+difficulty: hard
+instruction: "For account ACC001 in October 2026, group all transactions by merchant. Look ONLY at the merchants that have EXACTLY 3 transactions in the month - merchants with 1, 2 or more than 3 transactions must be excluded from every number you report. For that group, report: (a) the merchant with the highest total spend - give the merchant name exactly as it appears in the transaction data, plus its total (CNY, two decimals); (b) the combined total spend of ALL merchants in the group (two decimals); (c) the share of the top merchant's total in the group's combined total, as a percentage rounded to one decimal place."
+tools: [get_transactions, calculate, list_events, search_flights]
+max_turns: 10
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+  final_answer:
+    must_include: ["电影院", "394.2", "990.21", "39.8"]
+    must_not_include: []

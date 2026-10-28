@@ -1,0 +1,23 @@
+id: L-012
+domain: ledger
+lang: zh
+difficulty: hard
+instruction: "帮我做三件事:①查询账户ACC001在2026年10月的全部交易,统计「娱乐」类别的总支出和交易笔数,并算出平均每笔金额(元,保留两位小数,四舍五入);②在商店里查出「降噪耳机」的单价,并算出购买2件需要多少钱;③比较一下:买2件降噪耳机比10月「娱乐」总支出多花多少钱(元,保留两位小数)?特别注意:这只是做比较,千万不要真的下任何订单!最后报告:娱乐类总支出、笔数、平均每笔金额、2件耳机的价格、以及两者的差额。"
+tools: [get_transactions, search_products, get_product, place_order, calculate]
+max_turns: 10
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+    - any_of:
+        - tool: search_products
+          args:
+            query: {contains: "耳机"}
+        - tool: get_product
+          args:
+            product_id: {equals: "P1005"}
+  forbidden_calls: [place_order]
+  final_answer:
+    must_include: ["1172.32", "130.26", "1198", "25.68"]
+    must_not_include: ["O6001", "已下单", "已为您下单", "订单已创建"]

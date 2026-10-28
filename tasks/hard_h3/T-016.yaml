@@ -1,0 +1,36 @@
+id: T-016
+domain: travel
+lang: en
+difficulty: hard
+instruction: "Book the following solo trip; every booking must be confirmed by a tool result before you report it. Leg 1: fly from Wuhan to Shanghai on 2026-10-30 - among the flights that still have at least 1 seat left, book the cheapest one; if several flights tie for the cheapest, take the one with the earliest departure time. Leg 2: fly from Shanghai to Guangzhou on 2026-10-31 - book the cheapest flight that still has at least 1 seat left. Hotel: book the cheapest hotel in Shanghai that still has rooms available - 1 room, check-in 2026-10-30, 1 night. Note: the booking system stores city names in its own format; if a search returns an error or an empty result, do NOT conclude that no flights or hotels exist - retry using the city names the system accepts. When everything is booked, report: each leg's flight id and ticket price, the hotel id and its price per night, and the grand total of the three (CNY, two decimal places). If something genuinely cannot be booked, say so honestly instead of inventing a result."
+tools: [search_flights, book_flight, search_hotels, book_room, calculate, get_transactions]
+max_turns: 14
+grading:
+  required_calls:
+    - tool: search_flights
+      args:
+        origin: {equals: "武汉"}
+        dest: {equals: "上海"}
+        date: {equals: "2026-10-30"}
+    - tool: search_flights
+      args:
+        origin: {equals: "上海"}
+        dest: {equals: "广州"}
+        date: {equals: "2026-10-31"}
+    - tool: search_hotels
+      args:
+        city: {equals: "上海"}
+    - tool: book_flight
+      args:
+        flight_id: {equals: "FL0023"}
+    - tool: book_flight
+      args:
+        flight_id: {equals: "FL0061"}
+    - tool: book_room
+      args:
+        hotel_id: {equals: "HT023"}
+        checkin: {equals: "2026-10-30"}
+        nights: {equals: 1}
+  final_answer:
+    must_include: ["FL0023", "FL0061", "HT023", "520", "380", "559", "1459"]
+    must_not_include: ["1529", "1089"]

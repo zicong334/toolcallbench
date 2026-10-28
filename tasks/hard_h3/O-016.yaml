@@ -1,0 +1,25 @@
+id: O-016
+domain: orders
+lang: en
+difficulty: hard
+instruction: "Office restock with a twist. Buy exactly 6 units in total, split across exactly TWO different in-stock items from the 办公用品 (office supplies) category, all shipped to the office (address ID A2). Hard constraints: at most 4 units of any single item; the two items must be different; place one order per item. Among all the combinations that satisfy these constraints, choose the one with the LOWEST total cost. After ordering, report: the two product ids with the quantity ordered for each, each order's total, the grand total (CNY, two decimal places), and each order's share of the grand total (percentages rounded to one decimal place)."
+tools: [search_products, get_product, place_order, cancel_order, calculate, get_weather]
+max_turns: 12
+grading:
+  required_calls:
+    - tool: search_products
+      args:
+        category: {equals: "办公用品"}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1008"}
+        quantity: {equals: 4}
+        address_id: {equals: "A2"}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1007"}
+        quantity: {equals: 2}
+        address_id: {equals: "A2"}
+  final_answer:
+    must_include: ["P1008", "P1007", "39.6", "31.8", "71.4", "55.5", "44.5"]
+    must_not_include: ["59.4", "83.4", "77.1"]

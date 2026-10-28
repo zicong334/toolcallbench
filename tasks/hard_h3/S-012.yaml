@@ -1,0 +1,57 @@
+id: S-012
+domain: schedule
+lang: en
+difficulty: hard
+instruction: "Reorganize my week - complete the steps below IN THE GIVEN ORDER. Rules for every new event: it must start on the hour or on the half hour, fit completely inside working hours 09:00-18:00, and never overlap an existing active event (starting exactly at the moment another event ends is allowed). Steps: 1) List the events on 2026-10-28, on 2026-10-29 and on 2026-10-30. 2) On 2026-10-28, create a 90-minute event titled 'design review' as early as possible. 3) On 2026-10-29, create a 180-minute event titled 'grant writing' as early as possible. 4) On 2026-10-30, create a 240-minute event titled 'interviews' as early as possible, with the extra rule that it must end by 17:00 at the latest. 5) My boss will run the design review herself: cancel the 'design review' event you created on 2026-10-28 in step 2. 6) List the events on 2026-10-31, then recreate 'design review' (90 minutes) as early as possible on 2026-10-31. When done, report: the id of the event you cancelled in step 5; for every event you created that is still active at the end, its date (YYYY-MM-DD) and start time (HH:MM); and the total number of minutes of all those still-active new events combined."
+tools: [list_events, create_event, cancel_event, get_weather, calculate]
+max_turns: 14
+# ── 生成 ID 确定性论证(决策2审计对照用)─────────────────────────────
+# 本题 must_include/required 用到生成 ID E901(=步骤2创建的 10-28 design review)。
+# 1) 指令明文 "complete the steps IN THE GIVEN ORDER",成功创建只可能按
+#    步骤2→3→4→6 顺序发生,故第一个成功创建的事件恒为 E901。
+# 2) 失败不消耗序号:tcb/sandbox/tools.py::_create_event 中,DATE_OUT_OF_RANGE /
+#    格式错误 / EVENT_CONFLICT 均在 `eid = f"E{w['next_event_num']}"` 之前返回,
+#    只有成功创建才自增 next_event_num。
+# 3) cancel_event 不产生也不消耗事件序号;任务内没有其它会创建事件的路径。
+# 审计判据:若真实模型行为正确却因 ID 顺序不同被判负(如先建 10-31 再取消),
+# 即为判分不公正实证,应按备选方案把 E901 换成事实值(日期+开始时间)。
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-28"}
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-29"}
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-30"}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-28"}
+        start_time: {equals: "09:00"}
+        duration_min: {equals: 90}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-29"}
+        start_time: {equals: "10:30"}
+        duration_min: {equals: 180}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-30"}
+        start_time: {equals: "10:00"}
+        duration_min: {equals: 240}
+    - tool: cancel_event
+      args:
+        event_id: {equals: "E901"}
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-31"}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-31"}
+        start_time: {equals: "09:00"}
+        duration_min: {equals: 90}
+  final_answer:
+    must_include: ["E901", "2026-10-29", "10:30", "2026-10-30", "10:00", "2026-10-31", "09:00", "510"]
+    must_not_include: []

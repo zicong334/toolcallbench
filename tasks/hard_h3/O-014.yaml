@@ -1,0 +1,25 @@
+id: O-014
+domain: orders
+lang: zh
+difficulty: hard
+instruction: "为社团活动采购零食:总共要买恰好5件商品,全部来自「食品饮料」类目,全部送到公司(地址ID:A2)。购买方法:把该类目所有有库存的商品按单价从低到高排序,先从最便宜的一种开始买,能买多少买多少(不能超过它的库存,也不能超过还需要的件数);如果凑不够5件,再从第二便宜的有库存商品继续买,依此类推,直到恰好凑满5件为止。注意:没有库存的商品不能买;也不要因为某种商品库存不够就多买别的来凑单价。完成后报告:每一笔订单的商品ID、数量和金额;一共下了几笔订单;总花费(元,保留两位小数);以及总花费相当于300元预算的百分之多少(百分比保留1位小数)。"
+tools: [search_products, get_product, place_order, cancel_order, calculate, get_transactions]
+max_turns: 12
+grading:
+  required_calls:
+    - tool: search_products
+      args:
+        category: {equals: "食品饮料"}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1020"}
+        quantity: {equals: 3}
+        address_id: {equals: "A2"}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1019"}
+        quantity: {equals: 2}
+        address_id: {equals: "A2"}
+  final_answer:
+    must_include: ["P1020", "P1019", "96", "90", "186", "62.0"]
+    must_not_include: ["253", "225"]

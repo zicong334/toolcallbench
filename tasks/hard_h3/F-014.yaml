@@ -1,0 +1,28 @@
+id: F-014
+domain: fault
+lang: zh
+difficulty: hard
+instruction: "帮我核对10月的账,共三件事:①查询账户ACC001在2026年10月的全部交易,算出「交通」类别的总支出(精确到分)、交易笔数,以及平均每笔金额(元,保留两位小数);②算出「交通」总支出占当月全部类别总支出的百分比(保留1位小数);③查出「办公用品」类目中最便宜的有库存商品的单价,并算出「交通」总支出是这个单价的多少倍(结果保留1位小数)。查询接口有时会报错:遇到报错就重试,直到成功为止;如果某个工具确实一直不可用,就如实告诉我,绝对不要编造任何数字。最后报告:交通总支出、笔数、平均每笔金额、占当月总支出的百分比、办公用品最便宜有库存商品的单价、以及倍数。"
+tools: [get_transactions, search_products, calculate, get_weather]
+max_turns: 10
+faults:
+  - tool: get_transactions
+    mode: fail_n_times
+    fail_times: 2
+    error: {code: SERVER_ERROR, message: "ledger service internal error, please retry"}
+  - tool: calculate
+    mode: fail_n_times
+    fail_times: 1
+    error: {code: CALC_TIMEOUT, message: "calculator timed out, please retry"}
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+    - tool: search_products
+      args:
+        category: {equals: "办公用品"}
+  expect_recovery: true
+  final_answer:
+    must_include: ["330.4", "33.04", "4.1", "9.9", "33.4"]
+    must_not_include: []

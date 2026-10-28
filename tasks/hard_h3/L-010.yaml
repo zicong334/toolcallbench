@@ -1,0 +1,15 @@
+id: L-010
+domain: ledger
+lang: en
+difficulty: hard
+instruction: "For account ACC001 in October 2026, split the month into two halves: H1 = 2026-10-01 through 2026-10-15, H2 = 2026-10-16 through 2026-10-31. Using the transaction data, compute: (a) the total spent on 餐饮 (dining) in H1; (b) the total spent on 餐饮 in H2; (c) the difference (a) minus (b); (d) the total spent on 交通 (transport) in the WHOLE month; (e) the total spent on 交通 in H2; (f) the share of (e) in (d), as a percentage rounded to one decimal place. Report all six numbers; money amounts in CNY exact to two decimal places."
+tools: [get_transactions, calculate, search_products, get_forecast]
+max_turns: 10
+grading:
+  required_calls:
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+  final_answer:
+    must_include: ["122.88", "118.77", "4.11", "330.4", "105.08", "31.8"]
+    must_not_include: []

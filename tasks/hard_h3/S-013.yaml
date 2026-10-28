@@ -1,0 +1,56 @@
+id: S-013
+domain: schedule
+lang: en
+difficulty: hard
+instruction: "Thesis-week schedule surgery - complete the steps IN THE GIVEN ORDER. Rules for new events: start on the hour or on the half hour, fit completely inside working hours 09:00-18:00, and never overlap an existing active event (starting exactly at the moment another event ends is allowed). Steps: 1) List the events on 2026-10-28. 2) Cancel the existing 'advisor meeting' event on that day. 3) Create a 60-minute event titled 'thesis defense drill' on 2026-10-28 starting exactly at 14:30. 4) Create a 120-minute event titled 'committee meeting' on 2026-10-28 as early as possible, but it must start after the drill from step 3 ends. 5) Bad news: the committee can only meet BEFORE 11:00 on 2026-10-28. Cancel the 'committee meeting' event you created in step 4, then recreate 'committee meeting' (still 120 minutes) on 2026-10-28 at the earliest start time that still lets it end by 11:00. 6) List the events on 2026-10-29 and create a 90-minute event titled 'mock talk' there as early as possible. Then report: the id of the pre-existing event you cancelled in step 2; the final start times (HH:MM) of the committee meeting and the drill on 2026-10-28; the final start time of the mock talk on 2026-10-29; how many FREE minutes remain inside working hours 09:00-18:00 on 2026-10-28 after all changes (i.e. 540 minus every minute occupied by active events that day); and the total minutes of all new events still active at the end."
+tools: [list_events, create_event, cancel_event, get_forecast, search_products]
+max_turns: 14
+# ── 生成 ID 确定性论证(决策2审计对照用)─────────────────────────────
+# 本题用到:E102(世界固定 ID,非生成,无顺序问题)和 E902(=步骤4创建的
+# committee meeting @15:30)。
+# 1) 指令明文 "complete the steps IN THE GIVEN ORDER":步骤3(drill@14:30)先于
+#    步骤4(committee@15:30),且 drill 之前必须先取消 E102(否则 14:30 创建会
+#    EVENT_CONFLICT 失败——失败不消耗序号),故成功创建顺序恒为
+#    E901=drill、E902=committee@15:30。
+# 2) 失败不消耗序号:_create_event 的冲突/格式/日期校验都在分配 eid 之前返回。
+# 3) 步骤5即使模型先建 09:00 的新委员会(E903)再取消 E902,E902 的指代也不变;
+#    cancel_event 不消耗事件序号。
+# 审计判据:若真实模型行为正确却因 ID 顺序不同被判负,即为判分不公正实证,
+# 应把 cancel_event 的目标从 E902 换成事实值方案(如按标题+时间定位后取消)。
+grading:
+  required_calls:
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-28"}
+    - tool: cancel_event
+      args:
+        event_id: {equals: "E102"}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-28"}
+        start_time: {equals: "14:30"}
+        duration_min: {equals: 60}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-28"}
+        start_time: {equals: "15:30"}
+        duration_min: {equals: 120}
+    - tool: cancel_event
+      args:
+        event_id: {equals: "E902"}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-28"}
+        start_time: {equals: "09:00"}
+        duration_min: {equals: 120}
+    - tool: list_events
+      args:
+        date: {equals: "2026-10-29"}
+    - tool: create_event
+      args:
+        date: {equals: "2026-10-29"}
+        start_time: {equals: "10:30"}
+        duration_min: {equals: 90}
+  final_answer:
+    must_include: ["E102", "14:30", "09:00", "10:30", "360", "270"]
+    must_not_include: []

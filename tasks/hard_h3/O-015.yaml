@@ -1,0 +1,42 @@
+id: O-015
+domain: orders
+lang: zh
+difficulty: hard
+instruction: "请按顺序分两步办理。第一步:在「办公用品」类目里,挑单价最低的有库存商品,买2件,送到家(地址ID:A1),记住返回的订单号。第二步:我刚发现真正需要的是A4打印纸——请先把第一步刚下的那笔订单取消掉,然后购买「A4打印纸500张」2包,送到家(地址ID:A1)。最后:查询账户ACC001在2026年10月「购物」类别的总支出,并把新订单的金额加进去,算出一个合计。报告:被取消订单的订单号、它的商品ID和数量;新订单的订单号、商品ID和金额;2026年10月「购物」类别总支出;加总后的合计(金额均以元为单位,保留两位小数)。"
+tools: [search_products, get_product, place_order, cancel_order, get_transactions, calculate]
+max_turns: 12
+# ── 生成 ID 确定性论证(决策2审计对照用)─────────────────────────────
+# 本题 must_include/required 用到生成 ID O6001(第一单 P1008)与 O6002(第二单 P1006)。
+# 1) 指令明文"按顺序分两步办理":第一步下单(P1008)→取消→第二步下单(P1006),
+#    取消动作只可能发生在两单之间,故成功下单顺序恒定。
+# 2) 失败不消耗序号:tcb/sandbox/tools.py::_place_order 中 PRODUCT_NOT_FOUND /
+#    OUT_OF_STOCK / ADDRESS_NOT_FOUND 均在 `oid = f"O{w['next_order_num']}"`
+#    之前返回,只有成功下单才自增 next_order_num(例如模型先误传 A3 失败,
+#    下一单仍是 O6001)。
+# 3) cancel_order 不产生也不消耗订单序号;任务内没有其它下单路径。
+# 审计判据:若真实模型行为正确却因 ID 顺序不同被判负,即为判分不公正实证,
+# 应按备选方案把 O6001/O6002 换成事实值(P1008/P1006+金额)。
+grading:
+  required_calls:
+    - tool: search_products
+      args:
+        category: {equals: "办公用品"}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1008"}
+        quantity: {equals: 2}
+        address_id: {equals: "A1"}
+    - tool: cancel_order
+      args:
+        order_id: {equals: "O6001"}
+    - tool: place_order
+      args:
+        product_id: {equals: "P1006"}
+        quantity: {equals: 2}
+        address_id: {equals: "A1"}
+    - tool: get_transactions
+      args:
+        account_id: {equals: "ACC001"}
+  final_answer:
+    must_include: ["O6001", "P1008", "O6002", "P1006", "49", "1711.96", "1760.96"]
+    must_not_include: []
