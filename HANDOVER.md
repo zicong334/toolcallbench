@@ -12,6 +12,7 @@
 - 判分器:CJK 子串溯源 + 含数字值的"数字严格/文字软"溯源 + 纯分隔符 remainder 不放行
 
 ## 早上待办
+0. **本地档资产位置**(ollama 服务已停,模型仍在盘上,重启即可再跑):便携版 `D:\科研工作台\09_工具软件\_tools\ollama\ollama.exe`(免安装)、模型 `qwen2.5:7b-instruct` 已 create 入库(4.7GB,GGUF 原件在 `_tools\Qwen2.5-7B-Instruct-Q4_K_M.gguf`)。重启:`cd _tools/ollama && OLLAMA_HOST=127.0.0.1:11434 ./ollama.exe serve`,然后 `run_eval.py --models ollama-qwen2.5-7b-instruct --tasks <子集>`。全库 105 题双模式估算 14 小时(零成本),要跑就先起服务再后台跑
 1. 晨审后 push(github+origin 各 3+ 个未推 commit;FaithSift 另有改名等 5 个)
 2. 百炼套餐 key 仍无效(401);跨厂商 API 榜单要做需按量付费 key。**替代路径已铺好**:本地 Ollama 档位(见下)
 3. portfolio-pack/site 的数据要用 `--dedupe last` 重建以跟随 v0.3 数字,面试问答里 I-013/I-015/W-007 的复现率话术要改成 ×3 口径(W-007 与 I-015 现在是稳定型,I-007 要补进去)
