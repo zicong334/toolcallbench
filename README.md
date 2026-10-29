@@ -159,6 +159,7 @@ python scripts/run_eval.py --system stress --models ollama-qwen2.5-7b-instruct -
 
 ## 快速开始
 ```bash
+pip install toolcallbench-cn          # PyPI 发布包(0.1.0,2026-10-29 发布;功能与仓库一致)
 python -m venv .venv && .venv/Scripts/pip install openai pyyaml pytest python-dotenv
 python scripts/build_world.py                # 生成沙盒世界(幂等)
 python -m pytest tests/ -q                   # 离线自检(含 Oracle/Chaos mock E2E)

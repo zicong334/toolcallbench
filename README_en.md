@@ -153,6 +153,7 @@ Fault injection is per-task: `fail_n_times` (rate-limit then recover), `always` 
 ## Quick start
 
 ```bash
+pip install toolcallbench-cn          # PyPI release (0.1.0, published 2026-10-29)
 python -m venv .venv && .venv/Scripts/pip install openai pyyaml pytest python-dotenv
 python scripts/build_world.py                 # regenerate the world (idempotent)
 python -m pytest tests/ -q                    # 27 offline tests incl. Oracle/Chaos E2E
